@@ -8,9 +8,9 @@
 ![Dash](https://img.shields.io/badge/dash-v0.40.0-blue.svg?longCache=true&logo=python&longCache=true&style=flat-square&logoColor=white&colorB=23a8e2&colorA=36363e)
 ![Plotly](https://img.shields.io/badge/plotly-v3.7.1-blue.svg?longCache=true&logo=python&longCache=true&style=flat-square&logoColor=white&colorB=23a8e2&colorA=36363e)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat-square&colorA=36363e)
-[![GitHub Issues](https://img.shields.io/github/issues/toddbirchard/plotlydash-flask-tutorial.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/plotlydash-flask-tutorial/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/toddbirchard/plotlydash-flask-tutorial.svg?style=flat-square&colorB=e3bb18&colorA=36363e)](https://github.com/toddbirchard/plotlydash-flask-tutorial/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/toddbirchard/plotlydash-flask-tutorial.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/plotlydash-flask-tutorial/network)
+[![GitHub Issues](https://img.shields.io/github/issues/toddbirchard/chatango-bot-cms.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/chatango-bot-cms/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/toddbirchard/chatango-bot-cms.svg?style=flat-square&colorB=e3bb18&colorA=36363e)](https://github.com/toddbirchard/chatango-bot-cms/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/toddbirchard/chatango-bot-cms.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/chatango-bot-cms/network)
 
 
 Source code for the accompanying tutorial found here: https://hackersandslackers.com/gaining-full-control-over-plotly-dash/

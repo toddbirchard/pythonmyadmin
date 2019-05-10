@@ -2,7 +2,7 @@ from . import db
 
 
 class Command(db.Model):
-    """Model for user accounts."""
+    """Model for bot commands."""
 
     __tablename__ = 'acleebot'
     cmd = db.Column(db.String(64), unique=True, primary_key=True)

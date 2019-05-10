@@ -19,6 +19,7 @@ pandas = "*"
 lesscpy = "*"
 cssmin = "*"
 jsmin = "*"
+gunicorn = "*"
 
 
 [requires]
