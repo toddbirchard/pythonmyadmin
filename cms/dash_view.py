@@ -5,7 +5,6 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import pandas as pd
 from flask import current_app as app
-from flask import Flask
 from . import models
 
 
@@ -32,7 +31,7 @@ def Add_Dash(server):
             <body>
                 <nav>
                   <a href="/"><i class="fas fa-home"></i> Home</a>
-                  <a href="/dash_view/"><i class="fas fa-chart-line"></i> MEME BOT MAFIA</a>
+                  <a href="/dash_view/"><i class="fas fa-list"></i> Commands</a>
                 </nav>
                 <div style="width:95%; margin: 100px auto;">
                     <div class="filter">
@@ -41,6 +40,7 @@ def Add_Dash(server):
                         <button id="basic-filter">basic</button>
                         <button id="crypto-filter">crypto</button>
                         <button id="goal-filter">goal</button>
+                        <button id="random-filter">random</button>
                         <button id="etc-filter">etc</button>
                     </div>
                     {%app_entry%}
@@ -53,6 +53,7 @@ def Add_Dash(server):
             </body>
         </html>'''
 
+    # Get DataFrame
     cmd_df = get_dataset()
 
     # Create Dash Layout comprised of Data Tables
@@ -65,7 +66,7 @@ def Add_Dash(server):
 
 
 def get_dataset():
-    """Return previews of all CSVs saved in /data directory."""
+    """Return table from SQL database."""
     data = models.Command.query.all()
     cmd_df = pd.DataFrame([(d.command, d.response, d.type) for d in data],
                           columns=['command', 'response', 'type'])

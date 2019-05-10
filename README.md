@@ -1,4 +1,4 @@
-# Plot.ly Dash Flask Tutorial
+# Simple DB
 
 
 ![Python](https://img.shields.io/badge/Python-3.7-blue.svg?logo=python&longCache=true&logoColor=white&colorB=23a8e2&style=flat-square&colorA=36363e)
@@ -8,9 +8,6 @@
 ![Dash](https://img.shields.io/badge/dash-v0.40.0-blue.svg?longCache=true&logo=python&longCache=true&style=flat-square&logoColor=white&colorB=23a8e2&colorA=36363e)
 ![Plotly](https://img.shields.io/badge/plotly-v3.7.1-blue.svg?longCache=true&logo=python&longCache=true&style=flat-square&logoColor=white&colorB=23a8e2&colorA=36363e)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat-square&colorA=36363e)
-[![GitHub Issues](https://img.shields.io/github/issues/toddbirchard/chatango-bot-cms.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/chatango-bot-cms/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/toddbirchard/chatango-bot-cms.svg?style=flat-square&colorB=e3bb18&colorA=36363e)](https://github.com/toddbirchard/chatango-bot-cms/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/toddbirchard/chatango-bot-cms.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/chatango-bot-cms/network)
-
-
-Source code for the accompanying tutorial found here: https://hackersandslackers.com/gaining-full-control-over-plotly-dash/
+[![GitHub Issues](https://img.shields.io/github/issues/toddbirchard/simple-db.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/simple-db/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/toddbirchard/simple-db.svg?style=flat-square&colorB=e3bb18&colorA=36363e)](https://github.com/toddbirchard/simple-db/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/toddbirchard/simple-db.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/simple-db/network)
