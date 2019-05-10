@@ -97,14 +97,20 @@ nav {
 
 
       span:last-of-type {
-        font-size: 12px;
+        font-size: 14px;
+        font-weight: 600;
       }
     }
   }
 
   td {
-    padding: 15px 10px !important;
+    padding: 20px !important;
     text-align: left !important;
+
+    &:first-of-type,
+    &:last-of-type {
+        max-width: 50px !important;
+    }
 
     .dash-cell-value {
       display: inline !important;
@@ -112,7 +118,7 @@ nav {
       white-space: nowrap;
       max-width: 172px;
       text-align: left;
-      font-size: 1em;
+      font-size: 1.2em;
       overflow: hidden;
     }
   }

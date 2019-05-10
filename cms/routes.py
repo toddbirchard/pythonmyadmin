@@ -12,7 +12,7 @@ Environment.auto_build = True
 Environment.debug = False
 less_bundle = Bundle('less/*.less',
                      filters='less,cssmin',
-                     output='dist/css/plotly-flask-tutorial.css.css',
+                     output='dist/css/plotly-flask-tutorial.css',
                      extra={'rel': 'stylesheet/less'})
 js_bundle = Bundle('js/*.js',
                    filters='jsmin',
@@ -24,8 +24,9 @@ js_bundle.build()
 
 
 # Landing Page
-@main_bp.route('/home', methods=['GET'])
+@main_bp.route('/', methods=['GET'])
 def home():
+    """Generic home page."""
     return render_template('index.html',
                            title='Plotly Flask Tutorial.',
                            template='home-template',
