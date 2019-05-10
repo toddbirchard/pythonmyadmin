@@ -43,6 +43,7 @@ def Add_Dash(server):
                         <button id="random-filter">random</button>
                         <button id="etc-filter">etc</button>
                     </div>
+                    <div id="datatable-filter-container"></div>
                     {%app_entry%}
                 </div>
                 <footer>
@@ -54,40 +55,67 @@ def Add_Dash(server):
         </html>'''
 
     # Get DataFrame
-    cmd_df = get_dataset()
+    cmd_df = get_data()
+    commands_table = create_data_table(cmd_df)
 
     # Create Dash Layout comprised of Data Tables
     dash_app.layout = html.Div(
-        children=[cmd_df, html.Div(id='datatable-filter-container')],
+        children=[commands_table, html.Div(id='commands-container')],
         id='flex-container'
       )
+    # init_callbacks(dash_app, cmd_df)
 
     return dash_app.server
 
 
-def get_dataset():
+def get_data():
     """Return table from SQL database."""
     data = models.Command.query.all()
     cmd_df = pd.DataFrame([(d.command, d.response, d.type) for d in data],
                           columns=['command', 'response', 'type'])
-    # cmd_df.sort_values('type', axis=1, ascending=True)
+    return cmd_df
+
+
+def create_data_table(cmd_df):
+    """Create table from Pandas DataFrame."""
     table_preview = dash_table.DataTable(
         id='commands',
         columns=[{"name": i, "id": i} for i in cmd_df.columns],
         data=cmd_df.to_dict("rows"),
         sorting=True,
-        # filtering=True,
+        #filtering=True,
     )
     return table_preview
 
 
-'''@dash_app.callback(
-    Output('datatable-filter-container', "children"),
-    [Input('datatable-filtering-fe', "data")])
-def update_graph(rows):
-    if rows is None:
-        dff = cmd_df
-    else:
-        dff = pd.DataFrame(rows)
+def init_callbacks(dash_app, cmd_df):
+    @dash_app.callback(
+        Output('flex-container', "children"),
+        [Input('commands', "derived_virtual_data"),
+         Input('commands', "derived_virtual_selected_rows")])
+    def update_graph(rows, derived_virtual_selected_rows):
+        # When the table is first rendered, `derived_virtual_data` and
+        # `derived_virtual_selected_rows` will be `None`. This is due to an
+        # idiosyncracy in Dash (unsupplied properties are always None and Dash
+        # calls the dependent callbacks when the component is first rendered).
+        # So, if `rows` is `None`, then the component was just rendered
+        # and its value will be the same as the component's dataframe.
+        # Instead of setting `None` in here, you could also set
+        # `derived_virtual_data=df.to_rows('dict')` when you initialize
+        # the component.
+        if derived_virtual_selected_rows is None:
+            derived_virtual_selected_rows = []
 
-    return html.Div()'''
+        if rows is None:
+            dff = cmd_df
+        else:
+            dff = pd.DataFrame(rows)
+
+        colors = []
+        for i in range(len(dff)):
+            if i in derived_virtual_selected_rows:
+                colors.append("#7FDBFF")
+            else:
+                colors.append("#0074D9")
+
+        return html.Div()
