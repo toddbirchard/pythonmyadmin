@@ -1,9 +1,12 @@
 [[source]]
-name  =  "pypi"
-url  =  "https://pypi.org/simple"
-verify_ssl  =  true
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
 
 [dev-packages]
+lesscpy = "*"
+cssmin = "*"
+jsmin = "*"
 python-dotenv = "*"
 
 [packages]
@@ -16,11 +19,8 @@ dash-core-components = "*"
 dash-html-components = "*"
 dash-renderer = "*"
 pandas = "*"
-lesscpy = "*"
-cssmin = "*"
-jsmin = "*"
+
 gunicorn = "*"
 
-
 [requires]
-python_version  =  "3.7"
+python_version = "3.7"
