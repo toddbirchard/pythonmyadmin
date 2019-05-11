@@ -19,7 +19,7 @@ dash-core-components = "*"
 dash-html-components = "*"
 dash-renderer = "*"
 pandas = "*"
-
+wtforms = "*"
 gunicorn = "*"
 
 [requires]

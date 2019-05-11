@@ -11,7 +11,8 @@ html {
   .dash-spreadsheet-container {
     margin: 40px auto !important;
     overflow: hidden;
-    box-shadow: 0 0 5px #bcceef;
+    box-shadow: none;
+    border: 1px solid #d3d8e0;
     font-family: 'Lato', sans-serif;
     max-width: 100%;
   }
@@ -87,13 +88,13 @@ nav {
   }
 
   th {
-    background: #4ab3bf !important;
+    background: #4c5059 !important;
     color: white;
     padding: 8px 10px !important;
-    border-right: 1px solid #7eccd4 !important;
+    border-right: 0 !important;
 
     .sort {
-      color: #2b4249 !important;
+      color: #aeaeae !important
       transition: all .3s ease-out;
       order: 2;
 
@@ -136,6 +137,7 @@ nav {
       text-align: left;
       font-size: 1.2em;
       overflow: hidden;
+      font-weight: 300;
     }
   }
 

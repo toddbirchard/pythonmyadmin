@@ -1,4 +1,4 @@
-from cms import create_app
+from application import create_app
 
 app = create_app()
 

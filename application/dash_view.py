@@ -11,9 +11,10 @@ from . import models
 def Add_Dash(server):
     """Plot.ly Dash view which populates the screen with loaded DataFrames."""
     external_stylesheets = ['/static/dist/css/plotly-flask-tutorial.css',
-                            'https://fonts.googleapis.com/css?family=Lato',
+                            'https://fonts.googleapis.com/css?family=Lato::300,700',
                             'https://use.fontawesome.com/releases/v5.8.1/css/all.css']
-    external_scripts = ['/static/dist/js/includes/jquery.min.js', '/static/dist/js/main.js']
+    external_scripts = ['/static/dist/js/includes/jquery.min.js',
+                        '/static/dist/js/main.js']
     dash_app = Dash(server=server,
                     external_stylesheets=external_stylesheets,
                     external_scripts=external_scripts,
@@ -61,13 +62,19 @@ def Add_Dash(server):
     commands_table = create_data_table(cmd_df)
 
     # Create Dash Layout comprised of Data Tables
-    dash_app.layout = html.Div(
-        children=[commands_table, html.Div(id='commands-container')],
-        id='flex-container'
-      )
+    dash_app.layout = create_layout(commands_table)
     # init_callbacks(dash_app, cmd_df)
 
     return dash_app.server
+
+
+def create_layout(commands_table):
+    """Create Dash layout for table editor."""
+    return html.Div(
+                    children=[commands_table,
+                              html.Div(id='commands-container')],
+                    id='flex-container'
+                  )
 
 
 def get_data():
@@ -85,7 +92,7 @@ def create_data_table(cmd_df):
         columns=[{"name": i, "id": i} for i in cmd_df.columns],
         data=cmd_df.to_dict("rows"),
         sorting=True,
-        #filtering=True,
+        # filtering=True,
     )
     return table_preview
 
