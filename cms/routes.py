@@ -19,8 +19,9 @@ js_bundle = Bundle('js/*.js',
                    output='dist/js/main.js')
 assets.register('less_all', less_bundle)
 assets.register('js_all', js_bundle)
-less_bundle.build(force=True)
-js_bundle.build()
+if app.config['FLASK_ENV'] == 'development':
+    less_bundle.build(force=True)
+    js_bundle.build()
 
 
 # Landing Page
