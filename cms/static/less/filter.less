@@ -9,8 +9,8 @@
   }
 
   button {
-    padding: 12px 15px;
-    margin: 0 5px;
+    padding: 7px 11px;
+    margin: 0 1px;
     font-size: .9em;
     font-weight: 300;
     background: #d9eaec;
@@ -19,7 +19,10 @@
     border-radius: 2px;
     transition: all .2s ease-out;
     outline-color: transparent;
-  outline-style: none;
+    outline-style: none;
+    @media(max-width: 600px) {
+          padding: 7px;
+    }
 
     &:hover {
       cursor: pointer;

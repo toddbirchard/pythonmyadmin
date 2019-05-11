@@ -4,6 +4,9 @@ html {
   background: #e7ecf7 !important;
   padding: 0;
   height: 100% !important;
+  @media(max-width: 600px){
+    margin: 0;
+  }
 
   .dash-spreadsheet-container {
     margin: 40px auto !important;
@@ -11,6 +14,15 @@ html {
     box-shadow: 0 0 5px #bcceef;
     font-family: 'Lato', sans-serif;
     max-width: 100%;
+  }
+
+  .layout-container {
+    width:95%;
+    margin: 100px auto;
+
+    @media(max-width: 600px){
+        width:100%;
+    }
   }
 }
 
@@ -35,6 +47,9 @@ nav {
   width: 100%;
   font-family: Lato, sans-serif;
   box-shadow: 0 0 5px #658ba2;
+  @media(max-width: 600px){
+    display: none;
+  }
 
   a {
     color: white;
@@ -97,7 +112,7 @@ nav {
 
 
       span:last-of-type {
-        font-size: 1em;
+        font-size: .9em;
         font-weight: 400;
         text-transform: uppercase;
       }
