@@ -94,7 +94,7 @@ nav {
     border-right: 0 !important;
 
     .sort {
-      color: #aeaeae !important
+      color: #aeaeae !important;
       transition: all .3s ease-out;
       order: 2;
 
@@ -133,7 +133,6 @@ nav {
       display: inline !important;
       text-overflow: ellipsis;
       white-space: nowrap;
-      max-width: 172px;
       text-align: left;
       font-size: 1.2em;
       overflow: hidden;
@@ -184,5 +183,76 @@ table {
         text-align: center !important;
       }
     }
+  }
+}
+
+.dash-spreadsheet-container .dash-spreadsheet-inner td.focused {
+    background-color: rgba(154, 212, 255, 0.2) !important;
+    border: 1px solid #b8d0e4;
+}
+
+.dash-spreadsheet-container .dash-spreadsheet-inner td .input-cell-value-shadow {
+    width: 100%;
+}
+
+.dash-spreadsheet-container .dash-spreadsheet-inner td input.dash-cell-value.unfocused {
+    caret-color: #317ed1 !important;
+}
+
+.dash-spreadsheet-inner .input-active {
+    text-align: left !important;
+    overflow: visible !important;
+    color: #829ab2;
+  }
+
+  .previous-page,
+  .next-page {
+    padding: 7px 11px;
+    margin: 0 1px;
+    font-size: .9em;
+    font-weight: 300;
+    background: #d9eaec;
+    border: 1px solid #b8d6da;
+    color: #278296;
+    border-radius: 2px;
+    transition: all .2s ease-out;
+    outline-color: transparent;
+    outline-style: none;
+  }
+
+  .dash-delete-cell {
+    font-size: 1.3em !important;
+  }
+
+._dash-undo-redo {
+  background-color: rgba(255, 233, 233, 1) !important;
+  padding: 10px;
+  right: 110px!important;
+  left: unset !important;
+  width: 40px;
+  border: 1px solid pink;
+  transition: all .2s ease-out;
+  border-radius: 2px;
+
+  * {
+    color: #4c000d !important;
+  }
+}
+
+#save {
+  background-color: #c4e0d7!important;
+  padding: 10px;
+  right: 30px !important;
+  left: unset !important;
+  width: 40px;
+  border: 1px solid #b1d1c7;
+  transition: all .2s ease-out;
+  border-radius: 2px;
+  position: fixed;
+  bottom: 30px;
+  text-align: center;
+
+  * {
+    color: #738982 !important;
   }
 }

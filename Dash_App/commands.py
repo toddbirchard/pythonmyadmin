@@ -1,11 +1,14 @@
+import sys
+import time
 from dash import Dash
 import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import pandas as pd
+from . import data
+import json
 from flask import current_app as app
-from . import models
 
 
 def Add_Dash(server):
@@ -46,7 +49,6 @@ def Add_Dash(server):
                         <button id="random-filter">random</button>
                         <button id="etc-filter">etc</button>
                     </div>
-                    <div id="datatable-filter-container"></div>
                     {%app_entry%}
                 </div>
                 <footer>
@@ -58,12 +60,12 @@ def Add_Dash(server):
         </html>'''
 
     # Get DataFrame
-    cmd_df = get_data()
+    cmd_df = data.get_data()
     commands_table = create_data_table(cmd_df)
 
     # Create Dash Layout comprised of Data Tables
     dash_app.layout = create_layout(commands_table)
-    # init_callbacks(dash_app, cmd_df)
+    init_callbacks(dash_app, cmd_df)
 
     return dash_app.server
 
@@ -72,59 +74,72 @@ def create_layout(commands_table):
     """Create Dash layout for table editor."""
     return html.Div(
                     children=[commands_table,
-                              html.Div(id='commands-container')],
-                    id='flex-container'
+                              html.Div(id='save', children=[html.I(className='fas fa-save'),
+                                                            html.Span('Save')]),
+                              html.Div(id='callback-container'),
+                              html.Div(id='save-status')],
+                    id='database-table-container'
                   )
-
-
-def get_data():
-    """Return table from SQL database."""
-    data = models.Command.query.all()
-    cmd_df = pd.DataFrame([(d.command, d.response, d.type) for d in data],
-                          columns=['command', 'response', 'type'])
-    return cmd_df
 
 
 def create_data_table(cmd_df):
     """Create table from Pandas DataFrame."""
     table_preview = dash_table.DataTable(
-        id='commands',
+        id='database-table',
         columns=[{"name": i, "id": i} for i in cmd_df.columns],
         data=cmd_df.to_dict("rows"),
         sorting=True,
+        pagination_mode="fe",
+        pagination_settings={
+            "displayed_pages": 1,
+            "current_page": 0,
+            "page_size": 50,
+        },
+        editable=True,
+        navigation="page",
+        row_deletable=True
         # filtering=True,
     )
     return table_preview
 
 
 def init_callbacks(dash_app, cmd_df):
+    """Dash callbacks."""
     @dash_app.callback(
-        Output('flex-container', "children"),
-        [Input('commands', "derived_virtual_data"),
-         Input('commands', "derived_virtual_selected_rows")])
-    def update_graph(rows, derived_virtual_selected_rows):
-        # When the table is first rendered, `derived_virtual_data` and
-        # `derived_virtual_selected_rows` will be `None`. This is due to an
-        # idiosyncracy in Dash (unsupplied properties are always None and Dash
-        # calls the dependent callbacks when the component is first rendered).
-        # So, if `rows` is `None`, then the component was just rendered
-        # and its value will be the same as the component's dataframe.
-        # Instead of setting `None` in here, you could also set
-        # `derived_virtual_data=df.to_rows('dict')` when you initialize
-        # the component.
-        if derived_virtual_selected_rows is None:
-            derived_virtual_selected_rows = []
+        Output('save-status', 'children'),
+        [Input('save', 'n_clicks'),
+         Input('database-table', 'data')]
+        )
+    def save_table(n_clicks, table_data):
+        """Save table to database."""
+        updated_df = pd.DataFrame(table_data)
+        sys.stdout.write(str(updated_df.info()))
+        return updated_df.info()
 
-        if rows is None:
-            dff = cmd_df
-        else:
-            dff = pd.DataFrame(rows)
+    @dash_app.callback(
+        Output('callback-container', 'children'),
+        [Input('database-table', 'n_clicks'),
+         Input('database-table', 'active_cell'),
+         Input('database-table', 'data')]
+        )
+    def update_database(clicked, cell_coordinates, table_data):
+        changed_cell = table_data[cell_coordinates[0]]
+        return html.Span(changed_cell, className='')
 
-        colors = []
-        for i in range(len(dff)):
-            if i in derived_virtual_selected_rows:
-                colors.append("#7FDBFF")
-            else:
-                colors.append("#0074D9")
 
-        return html.Div()
+'''@dash_app.callback(
+    Output('callback-container', 'children'),
+    [Input('database-table', 'row_update'),
+        Input('database-table', 'rows')]
+    )
+def update_database(row_update, rows):
+    return html.Div(className='row', children=[
+        html.Div([
+            html.Code('row_update'),
+            html.Pre(json.dumps(row_update, indent=2))
+        ], className='six columns'),
+        html.Div([
+            html.Code('rows'),
+            html.Pre(json.dumps(rows, indent=2))
+        ], className='six columns'),
+    ])'''

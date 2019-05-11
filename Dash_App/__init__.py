@@ -1,0 +1,1 @@
+all = ['commands', 'data']
