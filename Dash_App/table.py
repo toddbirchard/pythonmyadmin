@@ -1,3 +1,4 @@
+"""Dash app for bot commands."""
 import sys
 import time
 from dash import Dash
@@ -7,6 +8,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import pandas as pd
 from . import data
+from .layout import app_layout
 import json
 from flask import current_app as app
 
@@ -24,40 +26,7 @@ def Add_Dash(server):
                     routes_pathname_prefix='/commands/')
 
     # Override the underlying HTML template
-    dash_app.index_string = '''<!DOCTYPE html>
-        <html>
-            <head>
-                {%metas%}
-                <title>{%title%}</title>
-                {%favicon%}
-                {%css%}
-            </head>
-            <body>
-                <nav>
-                  <a href="/"><i class="fas fa-home"></i> Home</a>
-                  <a href="/commands/"><i class="fas fa-list"></i> Commands</a>
-                  <a href="/database/"><i class="fas fa-database"></i> Database</a>
-                  <a href="/users/"><i class="fas fa-user-friends"></i> Users</a>
-                </nav>
-                <div class="layout-container">
-                    <div class="filter">
-                        <span>Filter by type:</span>
-                        <button id="avi-filter">avi</button>
-                        <button id="basic-filter">basic</button>
-                        <button id="crypto-filter">crypto</button>
-                        <button id="goal-filter">goal</button>
-                        <button id="random-filter">random</button>
-                        <button id="etc-filter">etc</button>
-                    </div>
-                    {%app_entry%}
-                </div>
-                <footer>
-                    {%config%}
-                    {%scripts%}
-                    {%renderer%}
-                </footer>
-            </body>
-        </html>'''
+    dash_app.index_string = app_layout
 
     # Get DataFrame
     cmd_df = data.get_data()
@@ -74,12 +43,12 @@ def create_layout(commands_table):
     """Create Dash layout for table editor."""
     return html.Div(
                     children=[commands_table,
-                              html.Div(id='save', children=[html.I(className='fas fa-save'),
-                                                            html.Span('Save')]),
-                              html.Div(id='callback-container'),
-                              html.Div(id='save-status')],
+                            html.Div(id='save', children=[html.I(className='fas fa-save'),
+                                                          html.Span('Save')]),
+                            html.Div(id='callback-container'),
+                            html.Div(id='save-status')],
                     id='database-table-container'
-                  )
+                )
 
 
 def create_data_table(cmd_df):
@@ -118,11 +87,11 @@ def init_callbacks(dash_app, cmd_df):
 
     @dash_app.callback(
         Output('callback-container', 'children'),
-        [Input('database-table', 'n_clicks'),
+        [Input('database-table', 'data_timestamp'),
          Input('database-table', 'active_cell'),
          Input('database-table', 'data')]
         )
-    def update_database(clicked, cell_coordinates, table_data):
+    def update_database(time_updated, cell_coordinates, table_data):
         changed_cell = table_data[cell_coordinates[0]]
         return html.Span(changed_cell, className='')
 

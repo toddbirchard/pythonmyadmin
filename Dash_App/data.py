@@ -1,3 +1,4 @@
+"""Fetch a database table."""
 from application import models
 import pandas as pd
 

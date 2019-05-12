@@ -27,37 +27,37 @@ if app.config['FLASK_ENV'] == 'development':
 
 
 # Landing Page
-@main_bp.route('/', methods=['GET'])
+@main_bp.route('/')
 def home():
     """Database Table Selection Page."""
     return render_template('index.html',
-                           title='Plotly Flask Tutorial.',
+                           title='Database Tables.',
                            template='home-template',
                            body="This is an example homepage, served with Flask.")
 
 
-@main_bp.route('/database', methods=['GET'])
+@main_bp.route('/database')
 def database():
-    """Database Table Selection Page."""
+    """Database Configuration Page."""
     return render_template('index.html',
-                           title='Simple DB.',
-                           template='home-template',
+                           title='Connect a Database',
+                           template='database-template',
                            body="This is an example homepage, served with Flask.")
 
 
-@main_bp.route('/users', methods=['GET'])
+@main_bp.route('/users')
 def users():
-    """Database Table Selection Page."""
+    """Users Page."""
     return render_template('index.html',
-                           title='Users.',
+                           title='Users',
                            template='users-template',
                            body="This is an example homepage, served with Flask.")
 
 
-@main_bp.route('/settings', methods=['GET'])
+@main_bp.route('/settings')
 def settings():
-    """Database Table Selection Page."""
+    """Settings Page."""
     return render_template('index.html',
-                           title='Settings.',
+                           title='Settings',
                            template='settings-template',
                            body="This is an example homepage, served with Flask.")
