@@ -43,10 +43,10 @@ def create_layout(commands_table):
     """Create Dash layout for table editor."""
     return html.Div(
                     children=[commands_table,
-                            html.Div(id='save', children=[html.I(className='fas fa-save'),
-                                                          html.Span('Save')]),
-                            html.Div(id='callback-container'),
-                            html.Div(id='save-status')],
+                              html.Div(id='save', children=[html.I(className='fas fa-save'),
+                                                            html.Span('Save')]),
+                              html.Div(id='callback-container'),
+                              html.Div(id='save-status')],
                     id='database-table-container'
                 )
 

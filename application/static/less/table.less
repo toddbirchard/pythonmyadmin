@@ -4,7 +4,7 @@ html {
   background: #e7ecf7 !important;
   padding: 0;
   height: 100% !important;
-  @media(max-width: 600px){
+  @media(max-width: 600px) {
     margin: 0;
   }
 
@@ -18,11 +18,10 @@ html {
   }
 
   .layout-container {
-    width:95%;
+    width: 95%;
     margin: 100px auto;
-
-    @media(max-width: 600px){
-        width:100%;
+    @media(max-width: 600px) {
+      width: 100%;
     }
   }
 }
@@ -48,7 +47,7 @@ nav {
   width: 100%;
   font-family: Lato, sans-serif;
   box-shadow: 0 0 5px #658ba2;
-  @media(max-width: 600px){
+  @media(max-width: 600px) {
     display: none;
   }
 
@@ -56,10 +55,10 @@ nav {
     color: white;
     text-decoration: none;
     margin-right: 30px;
-    transition: all .3s ease-out;
+    transition: all 0.3s ease-out;
 
     &:hover {
-      opacity: .7;
+      opacity: 0.7;
       cursor: pointer;
     }
 
@@ -95,12 +94,12 @@ nav {
 
     .sort {
       color: #aeaeae !important;
-      transition: all .3s ease-out;
+      transition: all 0.3s ease-out;
       order: 2;
 
       &:hover {
         cursor: pointer;
-        opacity: .7;
+        opacity: 0.7;
         text-decoration: none;
       }
     }
@@ -111,9 +110,8 @@ nav {
       width: 100%;
       justify-content: space-between;
 
-
       span:last-of-type {
-        font-size: .9em;
+        font-size: 0.9em;
         font-weight: 400;
         text-transform: uppercase;
       }
@@ -126,7 +124,7 @@ nav {
 
     &:first-of-type,
     &:last-of-type {
-        max-width: 50px !important;
+      max-width: 50px !important;
     }
 
     .dash-cell-value {
@@ -187,78 +185,20 @@ table {
 }
 
 .dash-spreadsheet-container .dash-spreadsheet-inner td.focused {
-    background-color: rgba(154, 212, 255, 0.2) !important;
-    border: 1px solid #b8d0e4;
+  background-color: rgba(154, 212, 255, 0.2) !important;
+  border: 1px solid #b8d0e4;
 }
 
 .dash-spreadsheet-container .dash-spreadsheet-inner td .input-cell-value-shadow {
-    width: 100%;
+  width: 100%;
 }
 
 .dash-spreadsheet-container .dash-spreadsheet-inner td input.dash-cell-value.unfocused {
-    caret-color: #317ed1 !important;
+  caret-color: #317ed1 !important;
 }
 
 .dash-spreadsheet-inner .input-active {
-    text-align: left !important;
-    overflow: visible !important;
-    color: #829ab2;
-  }
-
-  .previous-page,
-  .next-page {
-    padding: 7px 11px;
-    margin: 0 1px;
-    font-size: .9em;
-    font-weight: 300;
-    background: #d9eaec;
-    border: 1px solid #b8d6da;
-    color: #278296;
-    border-radius: 2px;
-    transition: all .2s ease-out;
-    outline-color: transparent;
-    outline-style: none;
-
-    &:hover {
-      cursor: pointer;
-      color: white;
-      background: #1c8ba4;
-    }
-  }
-
-  .dash-delete-cell {
-    font-size: 1.3em !important;
-  }
-
-._dash-undo-redo {
-  background-color: rgba(255, 233, 233, 1) !important;
-  padding: 10px;
-  right: 110px!important;
-  left: unset !important;
-  width: 40px;
-  border: 1px solid pink;
-  transition: all .2s ease-out;
-  border-radius: 2px;
-
-  * {
-    color: #4c000d !important;
-  }
-}
-
-#save {
-  background-color: #c4e0d7!important;
-  padding: 10px;
-  right: 30px !important;
-  left: unset !important;
-  width: 40px;
-  border: 1px solid #b1d1c7;
-  transition: all .2s ease-out;
-  border-radius: 2px;
-  position: fixed;
-  bottom: 30px;
-  text-align: center;
-
-  * {
-    color: #738982 !important;
-  }
+  text-align: left !important;
+  overflow: visible !important;
+  color: #829ab2;
 }
