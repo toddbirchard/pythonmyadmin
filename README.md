@@ -7,8 +7,8 @@
 ![Pandas](https://img.shields.io/badge/Pandas-v0.24.2-blue.svg?longCache=true&logo=python&longCache=true&style=flat-square&logoColor=white&colorB=23a8e2&colorA=36363e)
 ![Dash](https://img.shields.io/badge/Dash-v0.40.0-blue.svg?longCache=true&logo=python&longCache=true&style=flat-square&logoColor=white&colorB=23a8e2&colorA=36363e)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat-square&colorA=36363e)
-[![GitHub Issues](https://img.shields.io/github/issues/toddbirchard/simple-db.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/simple-db/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/toddbirchard/simple-db.svg?style=flat-square&colorB=e3bb18&colorA=36363e)](https://github.com/toddbirchard/simple-db/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/toddbirchard/simple-db.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/simple-db/network)
+[![GitHub Issues](https://img.shields.io/github/issues/toddbirchard/pythonmyadmin.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/pythonmyadmin/issues)
+[![lGitHub Stars](https://img.shields.io/github/stars/toddbirchard/pythonmyadmin.svg?style=flat-square&colorB=e3bb18&colorA=36363e)](https://github.com/toddbirchard/pythonmyadmin/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/toddbirchard/pythonmyadmin.svg?style=flat-square&colorA=36363e)](https://github.com/toddbirchard/pythonmyadmin/network)
 
 Lightweight Python GUI for exploring and modifying data in database. Spoof of PhpMyAdmin from the 90s.
