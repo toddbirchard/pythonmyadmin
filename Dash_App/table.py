@@ -62,7 +62,7 @@ def create_data_table(cmd_df):
         pagination_settings={
             "displayed_pages": 1,
             "current_page": 0,
-            "page_size": 50,
+            "page_size": 300,
         },
         editable=True,
         navigation="page",
