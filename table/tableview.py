@@ -1,16 +1,13 @@
 """Dash app for bot commands."""
 import sys
-import time
 from dash import Dash
 import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import pandas as pd
-from . import data
+from .data import get_data, upload_dataframe
 from .layout import app_layout
-import json
-from flask import current_app as app
 
 
 def Add_Dash(server):
@@ -29,7 +26,7 @@ def Add_Dash(server):
     dash_app.index_string = app_layout
 
     # Get DataFrame
-    cmd_df = data.get_data()
+    cmd_df = get_data()
     commands_table = create_data_table(cmd_df)
 
     # Create Dash Layout comprised of Data Tables
@@ -41,14 +38,14 @@ def Add_Dash(server):
 
 def create_layout(commands_table):
     """Create Dash layout for table editor."""
-    return html.Div(
+    return html.Div(id='database-table-container',
                     children=[commands_table,
                               html.Div(id='save', children=[html.I(className='fas fa-save'),
                                                             html.Span('Save')]),
                               html.Div(id='callback-container'),
-                              html.Div(id='save-status')],
-                    id='database-table-container'
-                )
+                              html.Div(id='container-button-basic', children=[
+                                  html.Div(id='save-status')
+                              ])])
 
 
 def create_data_table(cmd_df):
@@ -57,15 +54,12 @@ def create_data_table(cmd_df):
         id='database-table',
         columns=[{"name": i, "id": i} for i in cmd_df.columns],
         data=cmd_df.to_dict("rows"),
-        sorting=True,
-        pagination_mode="fe",
-        pagination_settings={
-            "displayed_pages": 1,
-            "current_page": 0,
-            "page_size": 300,
-        },
+        sort_action="native",
+        sort_mode='multi',
+        page_size=600,
+        page_current=0,
         editable=True,
-        navigation="page",
+        # navigation="page",
         row_deletable=True
         # filtering=True,
     )
@@ -77,23 +71,33 @@ def init_callbacks(dash_app, cmd_df):
     @dash_app.callback(
         Output('save-status', 'children'),
         [Input('save', 'n_clicks'),
-         Input('database-table', 'data')]
-        )
+         Input('database-table', 'data')])
     def save_table(n_clicks, table_data):
         """Save table to database."""
         updated_df = pd.DataFrame(table_data)
+        print('updated_df = ', updated_df.head())
+        # upload_dataframe(updated_df)
         sys.stdout.write(str(updated_df.info()))
-        return updated_df.info()
+        return updated_df
 
-    @dash_app.callback(
+    '''@dash_app.callback(
         Output('callback-container', 'children'),
         [Input('database-table', 'data_timestamp'),
          Input('database-table', 'active_cell'),
-         Input('database-table', 'data')]
-        )
+         Input('database-table', 'data')])
     def update_database(time_updated, cell_coordinates, table_data):
         changed_cell = table_data[cell_coordinates[0]]
         return html.Span(changed_cell, className='')
+
+    @dash_app.callback(
+        Output('callback-container', 'children'),
+
+        [Input('save', 'n_clicks')])
+    def update_output(n_clicks, value):
+        return 'The input value was "{}" and the button has been clicked {} times'.format(
+            value,
+            n_clicks
+        )'''
 
 
 '''@dash_app.callback(

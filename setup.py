@@ -10,12 +10,12 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='simple-db',  # Required
+    name='pythonmyadmin',  # Required
     version='0.0.1',  # Required
     description='Lightweight GUI for modifying database tables.',  # Optional
     long_description=long_description,  # Optional
     long_description_content_type='text/markdown',  # Optional (see note above)
-    url='https://github.com/toddbirchard/simple-db',  # Optional
+    url='https://github.com/toddbirchard/pythonmyadmin',  # Optional
     author='Todd Birchard',  # Optional
     author_email='toddbirchard@gmail.com',  # Optional
     classifiers=[  # Optional
@@ -49,7 +49,7 @@ setup(
         ],
     },
     project_urls={  # Optional
-        'Bug Reports': 'https://github.com/toddbirchard/simple-db/issues',
-        'Source': 'https://github.com/toddbirchard/simple-db/',
+        'Bug Reports': 'https://github.com/toddbirchard/pythonmyadmin/issues',
+        'Source': 'https://github.com/toddbirchard/pythonmyadmin/',
     },
 )

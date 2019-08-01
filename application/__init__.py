@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -16,9 +16,14 @@ def create_app():
 
         # Construct the data set
         from . import routes
-        from Dash_App import table
-        app = table.Add_Dash(app)
-
         app.register_blueprint(routes.main_bp)
+
+        # Compile assets
+        from .assets import compile_assets
+        compile_assets(app)
+
+        # Dash view
+        from table import tableview
+        app = tableview.Add_Dash(app)
 
         return app

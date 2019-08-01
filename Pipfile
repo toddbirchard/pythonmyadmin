@@ -4,23 +4,23 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-lesscpy = "*"
-cssmin = "*"
-jsmin = "*"
-python-dotenv = "*"
+Lesscpy = "*"
+Cssmin = "*"
+Jsmin = "*"
+Python-dotenv = "*"
 
 [packages]
 Flask = "*"
 Flask-SQLAlchemy = "*"
-psycopg2-binary = "*"
+Psycopg2-binary = "*"
 Flask-assets = "*"
-dash = "*"
-dash-core-components = "*"
-dash-html-components = "*"
-dash-renderer = "*"
-pandas = "*"
-wtforms = "*"
-gunicorn = "*"
+Dash = "*"
+Dash-core-components = "*"
+Dash-html-components = "*"
+Dash-renderer = "*"
+Pandas = "*"
+Wtforms = "*"
+Gunicorn = "*"
 
 [requires]
 python_version = "3.7"
