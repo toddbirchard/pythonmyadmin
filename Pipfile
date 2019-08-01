@@ -12,6 +12,7 @@ Python-dotenv = "*"
 [packages]
 Flask = "*"
 Flask-SQLAlchemy = "*"
+Flask-Session = "*"
 Psycopg2-binary = "*"
 Flask-assets = "*"
 Dash = "*"
@@ -20,6 +21,7 @@ Dash-html-components = "*"
 Dash-renderer = "*"
 Pandas = "*"
 Wtforms = "*"
+Redis = "*"
 Gunicorn = "*"
 
 [requires]

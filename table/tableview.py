@@ -11,7 +11,7 @@ from .layout import app_layout
 
 
 def Add_Dash(server):
-    """Plot.ly Dash view which populates the screen with loaded DataFrames."""
+    """Initiate Plotly Dash view."""
     external_stylesheets = ['/static/dist/css/plotly-flask-tutorial.css',
                             'https://fonts.googleapis.com/css?family=Lato::300,700',
                             'https://use.fontawesome.com/releases/v5.8.1/css/all.css']

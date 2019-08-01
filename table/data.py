@@ -3,11 +3,11 @@ from os import environ
 from application import models
 import pandas as pd
 from sqlalchemy.types import Text, String
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine
 
 
 def get_data():
-    """Return table from SQL database."""
+    """Fetch table from SQL database."""
     data = models.Command.query.all()
     cmd_df = pd.DataFrame([(d.command, d.response, d.type) for d in data],
                           columns=['command', 'response', 'type'])
@@ -15,7 +15,7 @@ def get_data():
 
 
 def upload_dataframe(commands_df):
-    """Upload JIRA DataFrame to PostgreSQL database."""
+    """Upload DataFrame to PostgreSQL database."""
     db_uri = environ.get('SQLALCHEMY_DATABASE_URI')
     db_bot_table = environ.get('SQLALCHEMY_JIRA_TABLE')
     db_schema = environ.get('SQLALCHEMY_DB_SCHEMA')

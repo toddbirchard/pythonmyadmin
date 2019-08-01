@@ -1,4 +1,5 @@
 from os import environ
+import redis
 
 
 class Config:
@@ -24,3 +25,6 @@ class Config:
     SQLALCHEMY_DATABASE_SCHEMA = environ.get('SQLALCHEMY_DATABASE_SCHEMA')
     SQLALCHEMY_DATABASE_TABLE = environ.get('SQLALCHEMY_DATABASE_TABLE')
     SQLALCHEMY_TRACK_MODIFICATIONS = environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')
+
+    # Redis
+    SESSION_REDIS = redis.from_url(environ.get('SESSION_REDIS'))
