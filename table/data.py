@@ -1,17 +1,26 @@
 """Fetch a database table."""
 from os import environ
-from application import models
 import pandas as pd
 from sqlalchemy.types import Text, String
 from sqlalchemy import create_engine
 
 
-def get_data():
+def get_table_data(table_name):
     """Fetch table from SQL database."""
-    data = models.Command.query.all()
-    cmd_df = pd.DataFrame([(d.command, d.response, d.type) for d in data],
-                          columns=['command', 'response', 'type'])
-    return cmd_df
+    db_uri = environ.get('SQLALCHEMY_DATABASE_URI')
+    engine = create_engine(db_uri,
+                           connect_args={'sslmode': 'require'},
+                           echo=True)
+    table_df = pd.read_sql(f'SELECT * FROM {table_name}', engine)
+    return table_df
+
+
+def column_dist_chart(table_df, column):
+    """Aggregate column values"""
+    grouped_column = table_df.groupby(column).count().sort_values(column, ascending=False)
+    print('--------------------------')
+    print(grouped_column)
+    return grouped_column
 
 
 def upload_dataframe(commands_df):
