@@ -24,6 +24,6 @@ def create_app():
 
         # Dash view
         from table import tableview
-        app = tableview.Add_Dash(app)
+        app = tableview.create_dash_view(app)
 
         return app

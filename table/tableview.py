@@ -1,15 +1,14 @@
-"""Dash app for bot commands."""
+"""Dash app for database table view."""
 from dash import Dash
 import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-import pandas as pd
-from .data import get_data, upload_dataframe
+from .data import get_table_data, upload_dataframe, column_dist_chart
 from .layout import app_layout
 
 
-def Add_Dash(server):
+def create_dash_view(server):
     """Initiate Plotly Dash view."""
     external_stylesheets = ['/static/dist/css/plotly-flask-tutorial.css',
                             'https://fonts.googleapis.com/css?family=Lato::300,700',
@@ -25,12 +24,15 @@ def Add_Dash(server):
     dash_app.index_string = app_layout
 
     # Get DataFrame
-    cmd_df = get_data()
-    commands_table = create_data_table(cmd_df)
+    table_df = get_table_data('commands')
+    commands_table = create_data_table(table_df)
+
+    for column in table_df:
+        column_dist_chart(table_df, column)
 
     # Create Dash Layout comprised of Data Tables
     dash_app.layout = create_layout(commands_table)
-    init_callbacks(dash_app, cmd_df)
+    init_callbacks(dash_app, table_df)
 
     return dash_app.server
 
@@ -58,25 +60,23 @@ def create_layout(commands_table):
                               ])
 
 
-def create_data_table(cmd_df):
+def create_data_table(table_df):
     """Create table from Pandas DataFrame."""
     table_preview = dash_table.DataTable(
         id='database-table',
-        columns=[{"name": i, "id": i} for i in cmd_df.columns],
-        data=cmd_df.to_dict("rows"),
+        columns=[{"name": i, "id": i} for i in table_df.columns],
+        data=table_df.to_dict("rows"),
         sort_action="native",
         sort_mode='multi',
         page_size=600,
         page_current=0,
-        editable=True,
         # navigation="page",
-        row_deletable=True
         # filtering=True,
     )
     return table_preview
 
 
-def init_callbacks(dash_app, cmd_df):
+def init_callbacks(dash_app, table_df):
     """Dash callbacks."""
     @dash_app.callback(
         Output('database-table', 'data'),
@@ -108,7 +108,7 @@ def init_callbacks(dash_app, cmd_df):
     def save_table(n_clicks, table_data):
         """Save table to database."""
         updated_df = pd.DataFrame(table_data)
-        print('updated_df = ', updated_df.head())
+        # print('updated_df = ', updated_df.head())
         # upload_dataframe(updated_df)
         sys.stdout.write(str(updated_df.info()))
         return updated_df'''
