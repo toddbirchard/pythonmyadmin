@@ -4,7 +4,7 @@ import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-from .data import get_table_data, upload_dataframe, column_dist_chart
+from .data import get_table_data, column_dist_chart
 from .layout import app_layout
 
 
@@ -68,8 +68,8 @@ def create_data_table(table_df):
         data=table_df.to_dict("rows"),
         sort_action="native",
         sort_mode='multi',
-        page_size=600,
-        page_current=0,
+        # page_size=600,
+        # page_current=0,
         # navigation="page",
         # filtering=True,
     )
