@@ -1,5 +1,4 @@
 """Dash app for bot commands."""
-import sys
 from dash import Dash
 import dash_table
 import dash_core_components as dcc
@@ -45,7 +44,18 @@ def create_layout(commands_table):
                               html.Div(id='callback-container'),
                               html.Div(id='container-button-basic', children=[
                                   html.Div(id='save-status')
-                              ])])
+                              ]),
+                              html.Button('Add Row', id='editing-rows-button', n_clicks=0),
+                              html.Div([
+                                dcc.Input(
+                                    id='adding-rows-name',
+                                    placeholder='Enter a column name...',
+                                    value='',
+                                    style={'padding': 10}
+                                ),
+                                html.Button('Add Column', id='adding-rows-button', n_clicks=0)
+                            ], style={'height': 50}),
+                              ])
 
 
 def create_data_table(cmd_df):
@@ -69,6 +79,29 @@ def create_data_table(cmd_df):
 def init_callbacks(dash_app, cmd_df):
     """Dash callbacks."""
     @dash_app.callback(
+        Output('database-table', 'data'),
+        [Input('editing-rows-button', 'n_clicks')],
+        [State('database-table', 'data'),
+         State('database-table', 'columns')])
+    def add_row(n_clicks, rows, columns):
+        if n_clicks > 0:
+            rows.append({c['id']: '' for c in columns})
+        return rows
+
+    @dash_app.callback(
+        Output('database-table', 'columns'),
+        [Input('adding-rows-button', 'n_clicks')],
+        [State('adding-rows-name', 'value'),
+         State('database-table', 'columns')])
+    def update_columns(n_clicks, value, existing_columns):
+        if n_clicks > 0:
+            existing_columns.append({
+                'id': value, 'name': value,
+                'editable_name': True, 'deletable': True
+            })
+        return existing_columns
+
+    '''@dash_app.callback(
         Output('save-status', 'children'),
         [Input('save', 'n_clicks'),
          Input('database-table', 'data')])
@@ -78,7 +111,7 @@ def init_callbacks(dash_app, cmd_df):
         print('updated_df = ', updated_df.head())
         # upload_dataframe(updated_df)
         sys.stdout.write(str(updated_df.info()))
-        return updated_df
+        return updated_df'''
 
     '''@dash_app.callback(
         Output('callback-container', 'children'),

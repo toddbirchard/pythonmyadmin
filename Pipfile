@@ -7,13 +7,12 @@ verify_ssl = true
 Lesscpy = "*"
 Cssmin = "*"
 Jsmin = "*"
-Python-dotenv = "*"
 
 [packages]
 Flask = "*"
 Flask-SQLAlchemy = "*"
 Flask-Session = "*"
-Psycopg2-binary = "*"
+PyMySQL = "*"
 Flask-assets = "*"
 Dash = "*"
 Dash-core-components = "*"
@@ -23,6 +22,7 @@ Pandas = "*"
 Wtforms = "*"
 Redis = "*"
 Gunicorn = "*"
+Python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
