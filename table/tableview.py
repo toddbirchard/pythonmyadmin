@@ -6,6 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from .data import get_table_data, column_dist_chart
 from .layout import app_layout
+from config import Config
 
 
 def create_dash_view(server):
@@ -18,13 +19,13 @@ def create_dash_view(server):
     dash_app = Dash(server=server,
                     external_stylesheets=external_stylesheets,
                     external_scripts=external_scripts,
-                    routes_pathname_prefix='/commands/')
+                    routes_pathname_prefix='/table/')
 
     # Override the underlying HTML template
     dash_app.index_string = app_layout
 
     # Get DataFrame
-    table_df = get_table_data('commands')
+    table_df = get_table_data(Config.SQLALCHEMY_DATABASE_TABLE)
     commands_table = create_data_table(table_df)
 
     for column in table_df:
@@ -47,7 +48,8 @@ def create_layout(commands_table):
                               html.Div(id='container-button-basic', children=[
                                   html.Div(id='save-status')
                               ]),
-                              html.Button('Add Row', id='editing-rows-button', n_clicks=0),
+                              html.Button(
+                                  'Add Row', id='editing-rows-button', n_clicks=0),
                               html.Div([
                                 dcc.Input(
                                     id='adding-rows-name',
@@ -55,8 +57,9 @@ def create_layout(commands_table):
                                     value='',
                                     style={'padding': 10}
                                 ),
-                                html.Button('Add Column', id='adding-rows-button', n_clicks=0)
-                            ], style={'height': 50}),
+                                html.Button(
+                                    'Add Column', id='adding-rows-button', n_clicks=0)
+                                  ], style={'height': 50}),
                               ])
 
 
