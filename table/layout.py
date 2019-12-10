@@ -11,7 +11,7 @@ app_layout = '''<!DOCTYPE html>
         <body>
             <nav>
                 <a href="/"><i class="fas fa-home"></i> Home</a>
-                <a href="/commands/"><i class="fas fa-list"></i> Commands</a>
+                <a href="/table/commands/"><i class="fas fa-list"></i> Commands</a>
                 <a href="/database/"><i class="fas fa-database"></i> Database</a>
                 <a href="/users/"><i class="fas fa-user-friends"></i> Users</a>
             </nav>

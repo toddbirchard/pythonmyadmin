@@ -18,7 +18,7 @@ def create_dash_view(server):
     dash_app = Dash(server=server,
                     external_stylesheets=external_stylesheets,
                     external_scripts=external_scripts,
-                    routes_pathname_prefix='/commands/')
+                    routes_pathname_prefix='/table/commands/')
 
     # Override the underlying HTML template
     dash_app.index_string = app_layout
@@ -47,16 +47,17 @@ def create_layout(commands_table):
                               html.Div(id='container-button-basic', children=[
                                   html.Div(id='save-status')
                               ]),
-                              html.Button('Add Row', id='editing-rows-button', n_clicks=0),
+                              html.Button(
+                                  'Add Row', id='editing-rows-button', n_clicks=0),
                               html.Div([
-                                dcc.Input(
-                                    id='adding-rows-name',
-                                    placeholder='Enter a column name...',
-                                    value='',
-                                    style={'padding': 10}
-                                ),
-                                html.Button('Add Column', id='adding-rows-button', n_clicks=0)
-                            ], style={'height': 50}),
+                                  dcc.Input(
+                                      id='adding-rows-name',
+                                      placeholder='Enter a column name...',
+                                      value='',
+                                      style={'padding': 10}
+                                  ),
+                                  html.Button('Add Column', id='adding-rows-button', n_clicks=0)
+                              ], style={'height': 50}),
                               ])
 
 
@@ -67,11 +68,8 @@ def create_data_table(table_df):
         columns=[{"name": i, "id": i} for i in table_df.columns],
         data=table_df.to_dict("rows"),
         sort_action="native",
-        sort_mode='multi',
-        # page_size=600,
-        # page_current=0,
-        # navigation="page",
-        # filtering=True,
+        sort_mode='native',
+        page_size=800,
     )
     return table_preview
 

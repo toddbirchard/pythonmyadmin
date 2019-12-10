@@ -18,7 +18,7 @@ html {
   }
 
   .layout-container {
-    width: 95%;
+    width: 90%;
     margin: 100px auto;
     @media(max-width: 600px) {
       width: 100%;
@@ -37,36 +37,7 @@ html {
   overflow: hidden;
 }
 
-nav {
-  background: #1d8ba5 !important;
-  color: white;
-  padding: 20px 30px !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  font-family: Lato, sans-serif;
-  box-shadow: 0 0 5px #658ba2;
-  @media(max-width: 600px) {
-    display: none;
-  }
 
-  a {
-    color: white;
-    text-decoration: none;
-    margin-right: 30px;
-    transition: all 0.3s ease-out;
-
-    &:hover {
-      opacity: 0.7;
-      cursor: pointer;
-    }
-
-    i {
-      margin-right: 5px;
-    }
-  }
-}
 
 .dash-spreadsheet-container {
   margin: 30px auto !important;
@@ -87,11 +58,23 @@ nav {
   }
 
   th {
-    background: #404552 !important;
-    color: white;
-    padding: 8px 10px !important;
+    background: white !important;
+    color: #404552;
+    padding: 15px 30px !important;
+    border-bottom: 1px solid #e5e7eb !important;
     border-right: 0 !important;
-    border-width: 0 !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
+    padding: 25px 15px !important;
+
+    .column-header--sort {
+      margin-right: 5px;
+      transition: all .2s ease-out;
+
+      &:hover {
+        color: #9bd2eb !important;
+      }
+    }
 
     .sort {
       color: #aeaeae !important;
@@ -109,7 +92,6 @@ nav {
       display: flex;
       align-items: center;
       width: 100%;
-      justify-content: space-between;
 
       span:last-of-type {
         font-size: 0.9em;
@@ -120,7 +102,7 @@ nav {
   }
 
   td {
-    padding: 20px !important;
+    padding: 15px !important;
     text-align: left !important;
 
     &:first-of-type,
@@ -145,24 +127,6 @@ nav {
 }
 
 table {
-  thead {
-    tr {
-      background: #646483 !important;
-      color: white !important;
-      font-weight: 100 !important;
-      text-transform: uppercase !important;
-      font-size: 0.8em !important;
-
-      th {
-        border-radius: 0 !important;
-        border: 0 !important;
-        text-align: center !important;
-        line-height: 1.2 !important;
-        padding: 10px 5px !important;
-        border-width: 0 !important;
-      }
-    }
-  }
 
   tbody {
     box-shadow: 0 0 7px #bdbdd2 !important;
@@ -180,9 +144,7 @@ table {
         padding: 15px 10px !important;
         font-size: 0.73em !important;
         line-height: 1.25 !important;
-        border-radius: 0 !important;
         text-align: center !important;
-        border-width: 0 !important;
         border: 0 !important;
       }
     }

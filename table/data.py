@@ -19,8 +19,6 @@ def get_table_data(table_name):
 def column_dist_chart(table_df, column):
     """Aggregate column values"""
     grouped_column = table_df.groupby(column).count().sort_values(column, ascending=False)
-    print('--------------------------')
-    print(grouped_column)
     return grouped_column
 
 
