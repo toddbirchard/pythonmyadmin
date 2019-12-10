@@ -10,45 +10,47 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='pythonmyadmin',  # Required
-    version='0.0.1',  # Required
-    description='Lightweight GUI for modifying database tables.',  # Optional
-    long_description=long_description,  # Optional
-    long_description_content_type='text/markdown',  # Optional (see note above)
-    url='https://github.com/toddbirchard/pythonmyadmin',  # Optional
-    author='Todd Birchard',  # Optional
-    author_email='toddbirchard@gmail.com',  # Optional
-    classifiers=[  # Optional
+    name='pythonmyadmin',
+    version='0.0.1',
+    description='Lightweight GUI for modifying database tables.',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    url='https://github.com/toddbirchard/pythonmyadmin',
+    author='Todd Birchard',
+    author_email='toddbirchard@gmail.com',
+    classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    keywords='Simple Lightweight Database GUI',  # Optional
-    packages=find_packages(),  # Required
-    install_requires=['flask',
-                      'flask_sqlalchemy',
-                      'pandas',
-                      'psycopg2-binary',
-                      'dash',
-                      'dash_core_components',
-                      'dash_html_components'],  # Optional
-    extras_require={  # Optional
+    keywords='Simple Lightweight Database GUI',
+    packages=find_packages(),
+    install_requires=['Flask',
+                      'Flask-SQLAlchemy',
+                      'Pandas',
+                      'PyMySQL',
+                      'Flask-assets',
+                      'Dash',
+                      'Dash_core_components',
+                      'Dash_html_components',
+                      'Dash-renderer',
+                      'Wtforms',
+                      'Redis',
+                      'Gunicorn',
+                      'Python-dotenv'],
+    extras_require={
         'dev': ['check-manifest'],
         'test': ['coverage'],
         'env': ['python-dotenv']
     },
-    entry_points={  # Optional
+    entry_points={
         'console_scripts': [
-            '__main__',
+            'run = wsgi:__main__',
         ],
     },
-    project_urls={  # Optional
+    project_urls={
         'Bug Reports': 'https://github.com/toddbirchard/pythonmyadmin/issues',
         'Source': 'https://github.com/toddbirchard/pythonmyadmin/',
     },
