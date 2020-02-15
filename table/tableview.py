@@ -6,7 +6,6 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from .data import get_table_data, column_dist_chart
 from .layout import app_layout
-from config import Config
 
 
 def create_dash_view(server):
@@ -25,7 +24,7 @@ def create_dash_view(server):
     dash_app.index_string = app_layout
 
     # Get DataFrame
-    table_df = get_table_data(Config.SQLALCHEMY_DATABASE_TABLE)
+    table_df = get_table_data()
     commands_table = create_data_table(table_df)
 
     for column in table_df:
@@ -70,7 +69,8 @@ def create_data_table(table_df):
         data=table_df.to_dict("rows"),
         sort_action="native",
         sort_mode='native',
-        page_size=800,
+        filter_action='native',
+        page_size=9000
     )
     return table_preview
 

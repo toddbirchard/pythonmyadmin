@@ -1,17 +1,15 @@
 """Fetch a database table."""
-from os import environ
 import pandas as pd
 from sqlalchemy.types import Text, String
 from sqlalchemy import create_engine
+from config import Config
 
 
-def get_table_data(table_name):
+def get_table_data():
     """Fetch table from SQL database."""
-    db_uri = environ.get('SQLALCHEMY_DATABASE_URI')
-    engine = create_engine(db_uri,
-                           echo=True)
+    engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
     table_df = pd.read_sql_table(con=engine,
-                                 table_name=table_name)
+                                 table_name=Config.SQLALCHEMY_DATABASE_TABLE)
     table_df.reset_index(inplace=True)
     return table_df
 
@@ -24,11 +22,8 @@ def column_dist_chart(table_df, column):
 
 def upload_dataframe(commands_df):
     """Upload DataFrame to PostgreSQL database."""
-    db_uri = environ.get('SQLALCHEMY_DATABASE_URI')
-    db_bot_table = environ.get('SQLALCHEMY_JIRA_TABLE')
-    engine = create_engine(db_uri,
-                           echo=True)
-    commands_df.to_sql(db_bot_table,
+    engine = create_engine(Config.SQLALCHEMY_DATABASE_URI, echo=True)
+    commands_df.to_sql(Config.SQLALCHEMY_DATABASE_TABLE,
                        engine,
                        if_exists='append',
                        index=False,

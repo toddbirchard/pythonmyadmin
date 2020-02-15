@@ -14,15 +14,15 @@
 
 
 .dash-spreadsheet-container {
+  max-width: 99%;
   margin: 30px auto !important;
   overflow: hidden;
   box-shadow: 0 0 5px #bcceef;
   font-family: 'Lato', sans-serif;
-  max-width: 99%;
 
   * {
-    font-family: Lato;
     box-shadow: none !important;
+    font-family: Lato;
   }
 
   th,
@@ -31,15 +31,25 @@
     box-shadow: none !important;
   }
 
+  tr:first-of-type,
+  td:first-of-type {
+        width: 55px;
+  }
+
+  tr:last-of-type,
+  td:last-of-type {
+        width: 100px;
+  }
+
   th {
+    padding: 15px 30px !important;
+    padding: 25px 15px !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    border-left: 0 !important;
     background: white !important;
     color: #404552;
-    padding: 15px 30px !important;
-    border-bottom: 1px solid #e5e7eb !important;
-    border-right: 0 !important;
-    border-left: 0 !important;
-    border-top: 0 !important;
-    padding: 25px 15px !important;
 
     .column-header--sort {
       margin-right: 5px;
@@ -51,14 +61,14 @@
     }
 
     .sort {
+      order: 2;
       color: #aeaeae !important;
       transition: all 0.3s ease-out;
-      order: 2;
 
       &:hover {
+        text-decoration: none;
         cursor: pointer;
         opacity: 0.7;
-        text-decoration: none;
       }
     }
 
@@ -86,12 +96,12 @@
 
     .dash-cell-value {
       display: inline !important;
+      overflow: hidden;
+      font-size: 1.2em;
+      font-weight: 300;
+      text-align: left;
       text-overflow: ellipsis;
       white-space: nowrap;
-      text-align: left;
-      font-size: 1.2em;
-      overflow: hidden;
-      font-weight: 300;
     }
   }
 
@@ -114,20 +124,20 @@ table {
 
       td {
         max-width: 150px !important;
-        overflow: hidden !important;
         padding: 15px 10px !important;
+        overflow: hidden !important;
+        border: 0 !important;
         font-size: 0.73em !important;
         line-height: 1.25 !important;
         text-align: center !important;
-        border: 0 !important;
       }
     }
   }
 }
 
 .dash-spreadsheet-container .dash-spreadsheet-inner td.focused {
-  background-color: rgba(154, 212, 255, 0.2) !important;
   border: 1px solid #b8d0e4;
+  background-color: rgba(154, 212, 255, 0.2) !important;
 }
 
 .dash-spreadsheet-container .dash-spreadsheet-inner td .input-cell-value-shadow {
@@ -139,7 +149,13 @@ table {
 }
 
 .dash-spreadsheet-inner .input-active {
-  text-align: left !important;
   overflow: visible !important;
   color: #829ab2;
+  text-align: left !important;
+}
+
+.dash-spreadsheet-inner input {
+  &::placeholder {
+    color: grey;
+  }
 }
