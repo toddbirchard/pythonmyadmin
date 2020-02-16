@@ -25,39 +25,34 @@ def create_dash_view(server):
 
     # Get DataFrame
     table_df = get_table_data()
-    commands_table = create_data_table(table_df)
+    commands_datatable = create_data_table(table_df)
 
     for column in table_df:
         column_dist_chart(table_df, column)
 
     # Create Dash Layout comprised of Data Tables
-    dash_app.layout = create_layout(commands_table)
+    dash_app.layout = create_layout(commands_datatable, table_df)
     init_callbacks(dash_app, table_df)
 
     return dash_app.server
 
 
-def create_layout(commands_table):
+def create_layout(commands_datatable, table_df):
     """Create Dash layout for table editor."""
     return html.Div(id='database-table-container',
-                    children=[commands_table,
-                              html.Div(id='save', children=[html.I(className='fas fa-save'),
-                                                            html.Span('Save')]),
+                    children=[dcc.Dropdown(
+                                id='type-dropdown',
+                                options=[
+                                    {'label': i, 'value': i} for i in
+                                    table_df.type.unique() if i],
+                                multi=True,
+                                placeholder='Filter commands by type'
+                                ),
+                              commands_datatable,
                               html.Div(id='callback-container'),
                               html.Div(id='container-button-basic', children=[
                                   html.Div(id='save-status')
                               ]),
-                              html.Button(
-                                  'Add Row', id='editing-rows-button', n_clicks=0),
-                              html.Div([
-                                  dcc.Input(
-                                      id='adding-rows-name',
-                                      placeholder='Enter a column name...',
-                                      value='',
-                                      style={'padding': 10}
-                                  ),
-                                  html.Button('Add Column', id='adding-rows-button', n_clicks=0)
-                              ], style={'height': 50}),
                               ])
 
 
@@ -69,7 +64,6 @@ def create_data_table(table_df):
         data=table_df.to_dict("rows"),
         sort_action="native",
         sort_mode='native',
-        filter_action='native',
         page_size=9000
     )
     return table_preview
@@ -78,6 +72,19 @@ def create_data_table(table_df):
 def init_callbacks(dash_app, table_df):
     """Dash callbacks."""
     @dash_app.callback(
+        Output('database-table', 'data'),
+        [Input('type-dropdown', 'value')])
+    def filter_by_type(types):
+        """Updates chart based on filtering."""
+        dff = table_df
+
+        if types is not None and len(types):
+            dff = table_df.loc[table_df['type'].isin(types)]
+
+        return dff.to_dict('records')
+
+
+    '''@dash_app.callback(
         Output('database-table', 'data'),
         [Input('editing-rows-button', 'n_clicks')],
         [State('database-table', 'data'),
@@ -100,7 +107,7 @@ def init_callbacks(dash_app, table_df):
             })
         return existing_columns
 
-    '''@dash_app.callback(
+    @dash_app.callback(
         Output('save-status', 'children'),
         [Input('save', 'n_clicks'),
          Input('database-table', 'data')])
@@ -110,9 +117,9 @@ def init_callbacks(dash_app, table_df):
         # print('updated_df = ', updated_df.head())
         # upload_dataframe(updated_df)
         sys.stdout.write(str(updated_df.info()))
-        return updated_df'''
+        return updated_df
 
-    '''@dash_app.callback(
+    @dash_app.callback(
         Output('callback-container', 'children'),
         [Input('database-table', 'data_timestamp'),
          Input('database-table', 'active_cell'),

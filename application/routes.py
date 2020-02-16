@@ -1,3 +1,4 @@
+"""Core route declaration."""
 from flask import Blueprint, render_template
 from flask import current_app as app
 from . import db
