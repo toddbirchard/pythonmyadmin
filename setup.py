@@ -37,7 +37,6 @@ setup(
                       'Dash-renderer',
                       'Wtforms',
                       'Redis',
-                      'Gunicorn',
                       'Python-dotenv'],
     extras_require={
         'dev': ['check-manifest'],

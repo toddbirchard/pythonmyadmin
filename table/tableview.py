@@ -3,7 +3,7 @@ from dash import Dash
 import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 from .data import get_table_data, column_dist_chart
 from .layout import app_layout
 
@@ -13,11 +13,8 @@ def create_dash_view(server):
     external_stylesheets = ['/static/dist/css/plotly-flask-tutorial.css',
                             'https://fonts.googleapis.com/css?family=Lato::300,700',
                             'https://use.fontawesome.com/releases/v5.8.1/css/all.css']
-    external_scripts = ['/static/dist/js/includes/jquery.min.js',
-                        '/static/dist/js/main.js']
     dash_app = Dash(server=server,
                     external_stylesheets=external_stylesheets,
-                    external_scripts=external_scripts,
                     routes_pathname_prefix='/table/commands/')
 
     # Override the underlying HTML template

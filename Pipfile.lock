@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d88b26a63e191b0e6ba80683768263f520b63b038df9ef2fb8db9364cba4fc17"
+            "sha256": "524f2fbece590f76aa81127ed1f976e1ec4e5dc360e814862171a83dca709d66"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -100,14 +100,6 @@
                 "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"
             ],
             "version": "==0.18.2"
-        },
-        "gunicorn": {
-            "hashes": [
-                "sha256:1904bb2b8a43658807108d59c3f3d56c2b6121a701161de0ddf9ad140073c626",
-                "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"
-            ],
-            "index": "pypi",
-            "version": "==20.0.4"
         },
         "itsdangerous": {
             "hashes": [
@@ -209,10 +201,10 @@
         },
         "plotly": {
             "hashes": [
-                "sha256:a19ed783bcf094e6207b3699ab261465bf3c7d299403678801de634bf17e2559",
-                "sha256:bb5271f648913cf330a0de4ede3084cda848f8ad8b080330a0678e1b21df97b0"
+                "sha256:75c95c0eacdeb260fd2dc21dbe8583721c3e229bdf176a41d11092f74171d8bc",
+                "sha256:d1a7641bd74db1519cd709e0998327e7f691f749422a64fbe608ec8d7ffa4b71"
             ],
-            "version": "==4.5.0"
+            "version": "==4.5.1"
         },
         "pymysql": {
             "hashes": [

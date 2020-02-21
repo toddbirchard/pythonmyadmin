@@ -21,7 +21,6 @@ Dash-renderer = "*"
 Pandas = "*"
 Wtforms = "*"
 Redis = "*"
-Gunicorn = "*"
 Python-dotenv = "*"
 
 [requires]
