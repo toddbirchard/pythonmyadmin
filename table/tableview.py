@@ -22,19 +22,19 @@ def create_dash_view(server):
 
     # Get DataFrame
     table_df = get_table_data()
-    commands_datatable = create_data_table(table_df)
+    datatable = create_data_table(table_df)
 
     for column in table_df:
         column_dist_chart(table_df, column)
 
     # Create Dash Layout comprised of Data Tables
-    dash_app.layout = create_layout(commands_datatable, table_df)
+    dash_app.layout = create_layout(datatable, table_df)
     init_callbacks(dash_app, table_df)
 
     return dash_app.server
 
 
-def create_layout(commands_datatable, table_df):
+def create_layout(datatable, table_df):
     """Create Dash layout for table editor."""
     return html.Div(id='database-table-container',
                     children=[dcc.Dropdown(
@@ -45,7 +45,7 @@ def create_layout(commands_datatable, table_df):
                                 multi=True,
                                 placeholder='Filter commands by type'
                                 ),
-                              commands_datatable,
+                              datatable,
                               html.Div(id='callback-container'),
                               html.Div(id='container-button-basic', children=[
                                   html.Div(id='save-status')
