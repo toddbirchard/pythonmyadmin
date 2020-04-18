@@ -28,4 +28,4 @@ class Config:
     SQLALCHEMY_DATABASE_NAME = environ.get('SQLALCHEMY_DATABASE_NAME')
 
     # Redis
-    SESSION_REDIS = redis.from_url(environ.get('SESSION_REDIS'))
+    # SESSION_REDIS = redis.from_url(environ.get('SESSION_REDIS'))
