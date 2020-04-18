@@ -1,13 +1,14 @@
 header {
   position: relative;
   width: 100%;
-  margin-bottom: 60px !important;
+  margin-bottom: 50px !important;
   padding: 40px 0 !important;
   background: white !important;
   box-shadow: 0 0 5px #bec6cf;
-  font-family: Lato, sans-serif;
+  font-family: 'Lato', sans-serif;
   @media(max-width: 600px) {
-    display: none;
+    margin: 0 !important;
+    padding: 30px 0 !important;
   }
 
   nav {
@@ -15,6 +16,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 1000px;
+    max-width: 90%;
     margin: auto;
 
     .left-nav {
@@ -23,6 +25,18 @@ header {
       justify-content: space-between;
       color: #59657b;
       line-height: 1;
+      @media(max-width: 600px) {
+        display: none;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #59657b;
+        line-height: 1;
+        text-decoration: none;
+      }
 
       h1 {
         margin: 0;

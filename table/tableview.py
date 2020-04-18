@@ -3,7 +3,7 @@ from dash import Dash
 import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 from .data import get_table_data, column_dist_chart
 from .layout import app_layout
 
@@ -13,11 +13,8 @@ def create_dash_view(server):
     external_stylesheets = ['/static/dist/css/plotly-flask-tutorial.css',
                             'https://fonts.googleapis.com/css?family=Lato::300,700',
                             'https://use.fontawesome.com/releases/v5.8.1/css/all.css']
-    external_scripts = ['/static/dist/js/includes/jquery.min.js',
-                        '/static/dist/js/main.js']
     dash_app = Dash(server=server,
                     external_stylesheets=external_stylesheets,
-                    external_scripts=external_scripts,
                     routes_pathname_prefix='/table/commands/')
 
     # Override the underlying HTML template
@@ -25,19 +22,19 @@ def create_dash_view(server):
 
     # Get DataFrame
     table_df = get_table_data()
-    commands_datatable = create_data_table(table_df)
+    datatable = create_data_table(table_df)
 
     for column in table_df:
         column_dist_chart(table_df, column)
 
     # Create Dash Layout comprised of Data Tables
-    dash_app.layout = create_layout(commands_datatable, table_df)
+    dash_app.layout = create_layout(datatable, table_df)
     init_callbacks(dash_app, table_df)
 
     return dash_app.server
 
 
-def create_layout(commands_datatable, table_df):
+def create_layout(datatable, table_df):
     """Create Dash layout for table editor."""
     return html.Div(id='database-table-container',
                     children=[dcc.Dropdown(
@@ -48,7 +45,7 @@ def create_layout(commands_datatable, table_df):
                                 multi=True,
                                 placeholder='Filter commands by type'
                                 ),
-                              commands_datatable,
+                              datatable,
                               html.Div(id='callback-container'),
                               html.Div(id='container-button-basic', children=[
                                   html.Div(id='save-status')

@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  {{body}}
+  <p class="database-host-name">Connected to <span>{{ host_name }}.</span></p>
+  <p class="database-table-summary">{{ table_summary }}</p>
   <ul>
   {% for table in tables %}
     <li><a href="/table/{{table}}">{{table}}</a></li>
