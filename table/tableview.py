@@ -10,12 +10,16 @@ from .layout import app_layout
 
 def create_dash_view(server):
     """Initiate Plotly Dash view."""
-    external_stylesheets = ['/static/dist/css/plotly-flask-tutorial.css',
-                            'https://fonts.googleapis.com/css?family=Lato::300,700',
-                            'https://use.fontawesome.com/releases/v5.8.1/css/all.css']
-    dash_app = Dash(server=server,
-                    external_stylesheets=external_stylesheets,
-                    routes_pathname_prefix='/table/commands/')
+    external_stylesheets = [
+        '/static/dist/css/plotly-flask-tutorial.css',
+        'https://fonts.googleapis.com/css?family=Lato::300,700',
+        'https://use.fontawesome.com/releases/v5.8.1/css/all.css'
+    ]
+    dash_app = Dash(
+        server=server,
+        external_stylesheets=external_stylesheets,
+        routes_pathname_prefix='/table/commands/'
+    )
 
     # Override the underlying HTML template
     dash_app.index_string = app_layout
@@ -36,21 +40,21 @@ def create_dash_view(server):
 
 def create_layout(datatable, table_df):
     """Create Dash layout for table editor."""
-    return html.Div(id='database-table-container',
-                    children=[dcc.Dropdown(
-                                id='type-dropdown',
-                                options=[
-                                    {'label': i, 'value': i} for i in
-                                    table_df.type.unique() if i],
-                                multi=True,
-                                placeholder='Filter commands by type'
-                                ),
-                              datatable,
-                              html.Div(id='callback-container'),
-                              html.Div(id='container-button-basic', children=[
-                                  html.Div(id='save-status')
-                              ]),
-                              ])
+    return html.Div(
+        id='database-table-container',
+        children=[dcc.Dropdown(
+            id='type-dropdown',
+            options=[{'label': i, 'value': i} for i in table_df.type.unique() if i],
+            multi=True,
+            placeholder='Filter commands by type'
+         ),
+            datatable,
+            html.Div(id='callback-container'),
+            html.Div(id='container-button-basic',
+                     children=[
+                         html.Div(id='save-status')
+                     ]),
+        ])
 
 
 def create_data_table(table_df):

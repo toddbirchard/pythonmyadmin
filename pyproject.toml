@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "pythonmyadmin"
+version = "0.1.0"
+description = "Lightweight GUI for modifying database tables."
+authors = ["Todd Birchard <toddbirchard@gmail.com>"]
+maintainers = ["Todd Birchard <toddbirchard@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/toddbirchard/pythonmyadmin/"
+repository = "https://github.com/toddbirchard/pythonmyadmin/"
+documentation = "https://github.com/toddbirchard/pythonmyadmin/"
+keywords = [
+    "Python",
+    "SQL",
+    "MySQL",
+    "Postgres",
+    "Tooling"
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+flask = "*"
+flask-sqlAlchemy = "*"
+flask-session = "*"
+pymysql = "*"
+flask-assets = "*"
+dash = "*"
+dash-core-components = "*"
+dash-html-components = "*"
+dash-renderer = "*"
+pandas = "*"
+wtforms = "*"
+redis = "*"
+python-dotenv = "*"
+
+[tool.poetry.dev-dependencies]
+Pytest = "*"
+Lesscpy = "*"
+Cssmin = "*"
+Jsmin = "*"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry.scripts]
+run = "wsgi:application"
+
+[tool.poetry.urls]
+issues = "https://github.com/toddbirchard/pythonmyadmin/issues"

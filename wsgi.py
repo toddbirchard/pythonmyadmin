@@ -1,3 +1,4 @@
+"""Application entry point."""
 from pythonmyadmin import create_app
 
 application = create_app()
