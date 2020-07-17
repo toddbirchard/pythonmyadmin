@@ -32,5 +32,3 @@ class Config:
     TEMPLATES_FOLDER = 'templates'
     COMPRESSOR_DEBUG = environ.get('COMPRESSOR_DEBUG')
 
-    # Redis
-    # SESSION_REDIS = redis.from_url(environ.get('SESSION_REDIS'))
