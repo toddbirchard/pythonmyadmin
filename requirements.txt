@@ -20,7 +20,7 @@ jsmin==2.2.2
 lesscpy==0.14.0
 MarkupSafe==1.1.1
 more-itertools==8.4.0
-numpy==1.19.0
+numpy==1.19.1
 packaging==20.4
 pandas==1.0.5
 plotly==4.9.0
