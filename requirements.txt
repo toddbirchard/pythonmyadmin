@@ -3,7 +3,7 @@ Brotli==1.0.7
 cachelib==0.1.1
 click==7.1.2
 cssmin==0.2.0
-dash==1.13.4
+dash==1.14.0
 dash-core-components==1.10.1
 dash-html-components==1.0.3
 dash-renderer==1.5.1
