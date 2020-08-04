@@ -39,8 +39,4 @@ update:
 .PHONY: clean
 clean:
 	find . -name '*.pyc' -delete
-<<<<<<< HEAD
 	find . -name '__pycache__' -delete
-=======
-	find . -name '__pycache__' -delete
->>>>>>> 01b84bf05a72ce26c3176f91e1eaa307e74752c0
