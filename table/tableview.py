@@ -1,9 +1,10 @@
 """Dash app for database table view."""
 from dash import Dash
-import dash_table
+from dash_table import DataTable
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+from pandas import DataFrame
 from .data import get_table_data, column_dist_chart
 from .layout import app_layout
 
@@ -38,7 +39,7 @@ def create_dash_view(server):
     return dash_app.server
 
 
-def create_layout(datatable, table_df):
+def create_layout(datatable: DataTable, table_df: DataFrame):
     """Create Dash layout for table editor."""
     return html.Div(
         id='database-table-container',
@@ -47,19 +48,21 @@ def create_layout(datatable, table_df):
             options=[{'label': i, 'value': i} for i in table_df.type.unique() if i],
             multi=True,
             placeholder='Filter commands by type'
-         ),
-            datatable,
-            html.Div(id='callback-container'),
-            html.Div(id='container-button-basic',
-                     children=[
-                         html.Div(id='save-status')
-                     ]),
-        ])
+        ),
+                  datatable,
+                  html.Div(id='callback-container'),
+                  html.Div(
+                      id='container-button-basic',
+                      children=[
+                          html.Div(id='save-status')
+                          ]),
+            ]
+        )
 
 
-def create_data_table(table_df):
+def create_data_table(table_df: DataFrame) -> DataTable:
     """Create table from Pandas DataFrame."""
-    table_preview = dash_table.DataTable(
+    table = DataTable(
         id='database-table',
         columns=[{"name": i, "id": i} for i in table_df.columns],
         data=table_df.to_dict("rows"),
@@ -67,10 +70,10 @@ def create_data_table(table_df):
         sort_mode='native',
         page_size=9000
     )
-    return table_preview
+    return table
 
 
-def init_callbacks(dash_app, table_df):
+def init_callbacks(dash_app: Dash, table_df: DataFrame):
     """Dash callbacks."""
     @dash_app.callback(
         Output('database-table', 'data'),
@@ -79,80 +82,7 @@ def init_callbacks(dash_app, table_df):
         """Updates chart based on filtering."""
         dff = table_df
 
-        if types is not None and len(types):
+        if types is not None and bool(types):
             dff = table_df.loc[table_df['type'].isin(types)]
 
         return dff.to_dict('records')
-
-
-    '''@dash_app.callback(
-        Output('database-table', 'data'),
-        [Input('editing-rows-button', 'n_clicks')],
-        [State('database-table', 'data'),
-         State('database-table', 'columns')])
-    def add_row(n_clicks, rows, columns):
-        if n_clicks > 0:
-            rows.append({c['id']: '' for c in columns})
-        return rows
-
-    @dash_app.callback(
-        Output('database-table', 'columns'),
-        [Input('adding-rows-button', 'n_clicks')],
-        [State('adding-rows-name', 'value'),
-         State('database-table', 'columns')])
-    def update_columns(n_clicks, value, existing_columns):
-        if n_clicks > 0:
-            existing_columns.append({
-                'id': value, 'name': value,
-                'editable_name': True, 'deletable': True
-            })
-        return existing_columns
-
-    @dash_app.callback(
-        Output('save-status', 'children'),
-        [Input('save', 'n_clicks'),
-         Input('database-table', 'data')])
-    def save_table(n_clicks, table_data):
-        """Save table to database."""
-        updated_df = pd.DataFrame(table_data)
-        # print('updated_df = ', updated_df.head())
-        # upload_dataframe(updated_df)
-        sys.stdout.write(str(updated_df.info()))
-        return updated_df
-
-    @dash_app.callback(
-        Output('callback-container', 'children'),
-        [Input('database-table', 'data_timestamp'),
-         Input('database-table', 'active_cell'),
-         Input('database-table', 'data')])
-    def update_database(time_updated, cell_coordinates, table_data):
-        changed_cell = table_data[cell_coordinates[0]]
-        return html.Span(changed_cell, className='')
-
-    @dash_app.callback(
-        Output('callback-container', 'children'),
-
-        [Input('save', 'n_clicks')])
-    def update_output(n_clicks, value):
-        return 'The input value was "{}" and the button has been clicked {} times'.format(
-            value,
-            n_clicks
-        )'''
-
-
-'''@dash_app.callback(
-    Output('callback-container', 'children'),
-    [Input('database-table', 'row_update'),
-        Input('database-table', 'rows')]
-    )
-def update_database(row_update, rows):
-    return html.Div(className='row', children=[
-        html.Div([
-            html.Code('row_update'),
-            html.Pre(json.dumps(row_update, indent=2))
-        ], className='six columns'),
-        html.Div([
-            html.Code('rows'),
-            html.Pre(json.dumps(rows, indent=2))
-        ], className='six columns'),
-    ])'''

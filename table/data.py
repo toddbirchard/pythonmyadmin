@@ -16,16 +16,16 @@ def get_table_data():
     return table_df
 
 
-def column_dist_chart(table_df, column):
+def column_dist_chart(table_df: pd.DataFrame, column):
     """Aggregate column values"""
     grouped_column = table_df.groupby(column).count().sort_values(column, ascending=False)
     return grouped_column
 
 
-def upload_dataframe(commands_df):
+def upload_dataframe(df: pd.DataFrame):
     """Upload DataFrame to PostgreSQL database."""
     engine = create_engine(Config.SQLALCHEMY_DATABASE_URI, echo=True)
-    commands_df.to_sql(
+    df.to_sql(
         Config.SQLALCHEMY_DATABASE_TABLE,
         engine,
         if_exists='append',
@@ -35,7 +35,5 @@ def upload_dataframe(commands_df):
             "responsetype": Text
         }
     )
-    success_message = 'Successfully uploaded' \
-                      + str(commands_df.count) \
-                      + ' rows.'
-    return success_message
+    response = f'Successfully uploaded {str(df.count)} rows.'
+    return response

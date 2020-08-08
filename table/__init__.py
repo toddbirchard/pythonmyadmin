@@ -1,1 +1,0 @@
-all = ['commands', 'data', 'layout']
