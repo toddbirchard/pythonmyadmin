@@ -1,7 +1,3 @@
-.env
-.DS_Store
-.webassets-cache
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -106,5 +102,13 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# Pycharm
+# System & Cache files
 .idea
+.DS_Store
+.webassets-cache
+
+# Secrets
+creds
+creds/*
+*.crt
+gcloud.json

@@ -1,4 +1,4 @@
-"""Override the underlying HTML template."""
+"""Override base HTML template."""
 
 app_layout = '''<!DOCTYPE html>
     <html>

@@ -4,15 +4,23 @@ from sqlalchemy.types import Text, String
 from sqlalchemy import create_engine
 from config import Config
 
+# Database connection engine
+engine = create_engine(
+    Config.SQLALCHEMY_DATABASE_URI,
+    connect_args=Config.SQLALCHEMY_CONNECT_ARGS
+)
+
 
 def get_table_data():
     """Fetch table from SQL database."""
-    engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
     table_df = pd.read_sql_table(
+        Config.SQLALCHEMY_DATABASE_TABLE,
         con=engine,
-        table_name=Config.SQLALCHEMY_DATABASE_TABLE
+        index_col='id',
+        parse_dates='created_at'
     )
-    table_df.reset_index(inplace=True)
+    table_df.sort_values('created_at', ascending=False, inplace=True)
+    # table_df.reset_index(inplace=True)
     return table_df
 
 
@@ -23,16 +31,15 @@ def column_dist_chart(table_df: pd.DataFrame, column):
 
 
 def upload_dataframe(df: pd.DataFrame):
-    """Upload DataFrame to PostgreSQL database."""
-    engine = create_engine(Config.SQLALCHEMY_DATABASE_URI, echo=True)
+    """Upload DataFrame database."""
     df.to_sql(
         Config.SQLALCHEMY_DATABASE_TABLE,
         engine,
         if_exists='append',
-        index=False,
+        index=True,
         dtype={
-            "command": String(100),
-            "responsetype": Text
+            "command": String(255),
+            "response": Text
         }
     )
     response = f'Successfully uploaded {str(df.count)} rows.'

@@ -12,7 +12,7 @@ from .layout import app_layout
 def create_dash_view(server):
     """Initiate Plotly Dash view."""
     external_stylesheets = [
-        '/static/dist/css/plotly-flask-tutorial.css',
+        '/static/dist/css/style.css',
         'https://fonts.googleapis.com/css?family=Lato::300,700',
         'https://use.fontawesome.com/releases/v5.8.1/css/all.css'
     ]
@@ -65,7 +65,7 @@ def create_data_table(table_df: DataFrame) -> DataTable:
     table = DataTable(
         id='database-table',
         columns=[{"name": i, "id": i} for i in table_df.columns],
-        data=table_df.to_dict("rows"),
+        data=table_df.to_dict("records"),
         sort_action="native",
         sort_mode='native',
         page_size=9000
