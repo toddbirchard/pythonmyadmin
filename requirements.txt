@@ -14,7 +14,7 @@ Flask-Compress==1.7.0
 Flask-Session==0.3.2
 Flask-SQLAlchemy==2.4.4
 future==0.18.2
-iniconfig==1.0.1
+iniconfig==1.1.1
 itsdangerous==1.1.0
 Jinja2==2.11.2
 jsmin==2.2.2
