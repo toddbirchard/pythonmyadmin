@@ -21,7 +21,6 @@ class Config:
     SQLALCHEMY_DATABASE_TABLE = 'commands'
     SQLALCHEMY_DATABASE_NAME = environ.get('SQLALCHEMY_DATABASE_NAME')
     SQLALCHEMY_CONNECT_ARGS = {'ssl': {'ca': './creds/ca-certificate.crt'}}
-    # SQLALCHEMY_ENGINE_OPTIONS = {'ssl': {'ca': './creds/ca-certificate.crt'}}
 
     # Flask-Assets
     LESS_BIN = environ.get('LESS_BIN')

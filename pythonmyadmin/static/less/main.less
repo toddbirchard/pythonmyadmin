@@ -1,11 +1,15 @@
+@import './variables.less';
+@import './nav.less';
+@import './table.less';
+
 body,
 html {
   height: 100% !important;
   margin: 0;
   padding: 0;
-  background: #e7ecf7 !important;
-  font-family: 'Lato', sans-serif;
-  @media(max-width: 600px) {
+  background: @background-color !important;
+  font-family: @body-font;
+  @media(max-width: @mobile-breakpoint) {
     margin: 0;
   }
 
@@ -15,7 +19,7 @@ html {
 
   a {
     text-decoration: none;
-    color: #5eb9d7;
+    color: @link-color;
     font-weight: 500;
     &:hover {
         cursor: pointer;
@@ -75,14 +79,14 @@ html {
     overflow: hidden;
     border: 1px solid #d3d8e0;
     box-shadow: none;
-    font-family: 'Lato', sans-serif;
+    font-family: @body-font;
   }
 
   .layout-container {
     width: 1000px;
     max-width: 90%;
     margin: 40px auto;
-    @media(max-width: 600px) {
+    @media(max-width: @mobile-breakpoint) {
       width: 100%;
       max-width: 95%;
       margin: 20px auto;

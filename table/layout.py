@@ -23,9 +23,9 @@ app_layout = '''<!DOCTYPE html>
                 </div>
             </nav>
             </header>
-            <div class="layout-container">
+            <main class="layout-container">
                 {%app_entry%}
-            </div>
+            </main>
             <footer>
                 {%config%}
                 {%scripts%}

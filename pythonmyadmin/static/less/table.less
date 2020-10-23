@@ -1,16 +1,8 @@
+@import './variables.less';
+
+
 .table-template {
   margin: 0;
-
-  .container {
-    margin: 90px 30px;
-    color: #182635;
-  }
-
-  #_dash-app-content {
-    max-width: 95% !important;
-    margin: 90px auto !important;
-    overflow: hidden;
-  }
 
   .dash-spreadsheet-container {
     max-width: 100%;
@@ -19,11 +11,11 @@
     border: 0;
     border-radius: 4px;
     box-shadow: 0 0 4px #cdd3e2;
-    font-family: 'Lato', sans-serif;
+    font-family: @body-font;
 
     * {
       box-shadow: none !important;
-      font-family: Lato;
+      font-family: @body-font;
     }
 
     th,
@@ -86,11 +78,40 @@
           text-transform: uppercase;
         }
       }
+
+      &:nth-child(even) {
+        background: #f5f8fc !important;
+      }
+    }
+
+    tr {
+      border: 0 !important;
+
+      &:nth-child(even) {
+        background: #e7eefa !important;
+      }
     }
 
     td {
-      padding: 15px !important;
-      text-align: left !important;
+      padding: 15px 10px !important;
+      overflow: hidden !important;
+      border: 0 !important;
+      font-size: 0.73em !important;
+      line-height: 1.25 !important;
+      text-align: center !important;
+
+      &.focused {
+        background-color: rgba(154, 212, 255, 0.2) !important;
+        box-shadow: 0 0 4px #cdd3e2;
+      }
+
+      &.unfocused {
+        caret-color: #317ed1 !important
+      }
+
+      .input-cell-value-shadow {
+        width: 100%;
+      }
 
       &:first-of-type,
       &:last-of-type {
@@ -109,9 +130,18 @@
       }
     }
 
-    td[data-dash-column="command"],
+    .column-0,
+    .column-3 {
+      max-width: 80px !important;
+    }
+
     .column-1 {
-        max-width: 200px !important;
+      max-width: 50px !important;
+    }
+
+    td[data-dash-column="command"],
+    .column-2 {
+      max-width: 200px !important;
     }
 
     td[data-dash-column="response"] {
@@ -120,11 +150,11 @@
     }
 
     td[data-dash-column="index"] {
-        text-align: center !important;
+      text-align: center !important;
 
-        div {
-          text-align: center !important;
-        }
+      div {
+        text-align: center !important;
+      }
     }
 
     td[data-dash-column="index"] {
@@ -132,57 +162,119 @@
       font-size: 1.1em;
       font-weight: 500;
     }
-
-    tr:nth-child(even) {
-      background: #f5f8fc !important;
-    }
   }
 
   table {
     tbody {
       box-shadow: 0 0 7px #bdbdd2 !important;
+    }
+  }
 
-      tr {
-        border: 0 !important;
+  .dash-spreadsheet-inner {
+    input {
+      &::placeholder {
+        color: grey;
+      }
+    }
 
-        &:nth-child(even) {
-          background: #e7eefa !important;
-        }
+    .input-active {
+      overflow: visible !important;
+      color: #829ab2;
+      text-align: left !important;
+    }
+  }
 
-        td {
-          padding: 15px 10px !important;
-          overflow: hidden !important;
-          border: 0 !important;
-          font-size: 0.73em !important;
-          line-height: 1.25 !important;
-          text-align: center !important;
-        }
+  .Select-control {
+    margin: 0;
+    padding: 8px;
+    border: 0;
+    box-shadow: 0 0 4px #cdd3e2;
+
+    .Select-placeholder {
+      height: fit-content;
+      margin: auto;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .Select-value {
+      margin: 0 8px 0 0 !important;
+
+      .Select-value-icon {
+        padding: 6px 8px;
+      }
+
+      .Select-value-label {
+        padding: 7px 13px;
       }
     }
   }
 
-  .dash-spreadsheet-container .dash-spreadsheet-inner td.focused {
-    background-color: rgba(154, 212, 255, 0.2) !important;
-    box-shadow: 0 0 4px #cdd3e2;
+  .Select-menu-outer {
+    border: 0;
+    box-shadow: 0 0 6px #cdd3e2;
+
+    * {
+      width: 100%;
+      color: #404552;
+    }
   }
 
-  .dash-spreadsheet-container .dash-spreadsheet-inner td .input-cell-value-shadow {
-    width: 100%;
+  .next-page,
+  .previous-page {
+    padding: 7px 11px;
+    margin: 0 1px;
+    font-size: 0.9em;
+    font-weight: 300;
+    background: #e7f1f2;
+    border: 1px solid #b8d6da;
+    color: #278296;
+    border-radius: 2px;
+    transition: all 0.2s ease-out;
+    outline-color: transparent;
+    outline-style: none;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background: #1c8ba4;
+    }
   }
 
-  .dash-spreadsheet-container .dash-spreadsheet-inner td input.dash-cell-value.unfocused {
-    caret-color: #317ed1 !important;
+  .dash-delete-cell {
+    font-size: 1.3em !important;
   }
 
-  .dash-spreadsheet-inner .input-active {
-    overflow: visible !important;
-    color: #829ab2;
-    text-align: left !important;
+  ._dash-undo-redo {
+    background-color: rgba(255, 233, 233, 1) !important;
+    padding: 10px;
+    right: 110px !important;
+    left: unset !important;
+    width: 40px;
+    border: 1px solid pink;
+    transition: all 0.2s ease-out;
+    border-radius: 2px;
+
+    * {
+      color: #4c000d !important;
+    }
   }
 
-  .dash-spreadsheet-inner input {
-    &::placeholder {
-      color: grey;
+  #save {
+    background-color: #c4e0d7 !important;
+    padding: 10px;
+    right: 30px !important;
+    left: unset !important;
+    width: 40px;
+    border: 1px solid #b1d1c7;
+    transition: all 0.2s ease-out;
+    border-radius: 2px;
+    position: fixed;
+    bottom: 30px;
+    text-align: center;
+
+    * {
+      color: #738982 !important;
     }
   }
 }

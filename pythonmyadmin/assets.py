@@ -8,7 +8,7 @@ def compile_assets(app):
     Environment.auto_build = True
     Environment.debug = False
     less_bundle = Bundle(
-        'less/*.less',
+        'less/main.less',
         filters='less,cssmin',
         output='dist/css/style.css',
         extra={'rel': 'stylesheet/less'}
@@ -20,6 +20,6 @@ def compile_assets(app):
     )
     assets.register('less_all', less_bundle)
     assets.register('js_all', js_bundle)
-    if app.config['FLASK_ENV'] == 'development':
+    if app.config['FLASK_ENV'] != 'production':
         less_bundle.build(force=True)
         js_bundle.build()

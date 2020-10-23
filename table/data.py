@@ -20,7 +20,7 @@ def get_table_data():
         parse_dates='created_at'
     )
     table_df.sort_values('created_at', ascending=False, inplace=True)
-    # table_df.reset_index(inplace=True)
+    table_df['created_at'] = table_df['created_at'].dt.strftime('%m/%d/%Y')
     return table_df
 
 
