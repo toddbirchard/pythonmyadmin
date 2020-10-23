@@ -53,7 +53,7 @@ def update_output(n_clicks, value):
     )'''
 
 
-'''@dash_app.callback(
+"""@dash_app.callback(
 Output('callback-container', 'children'),
 [Input('database-table', 'row_update'),
     Input('database-table', 'rows')]
@@ -68,4 +68,4 @@ return html.Div(className='row', children=[
         html.Code('rows'),
         html.Pre(json.dumps(rows, indent=2))
     ], className='six columns'),
-])'''
+])"""

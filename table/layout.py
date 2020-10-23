@@ -1,6 +1,6 @@
 """Override base HTML template."""
 
-app_layout = '''<!DOCTYPE html>
+app_layout = """<!DOCTYPE html>
     <html>
         <head>
             {%metas%}
@@ -32,4 +32,4 @@ app_layout = '''<!DOCTYPE html>
                 {%renderer%}
             </footer>
         </body>
-    </html>'''
+    </html>"""

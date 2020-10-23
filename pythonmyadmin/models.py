@@ -1,13 +1,14 @@
 """Data models."""
-from . import db
 from flask import current_app as app
+
+from . import db
 
 
 class Command(db.Model):
     """Chatbot command table."""
 
-    __tablename__ = app.config['SQLALCHEMY_DATABASE_TABLE']
-    __table_args__ = {'extend_existing': True}
+    __tablename__ = app.config["SQLALCHEMY_DATABASE_TABLE"]
+    __table_args__ = {"extend_existing": True}
 
     # Columns
     id = db.Column(db.Integer, primary_key=True)
@@ -17,4 +18,4 @@ class Command(db.Model):
     created_at = db.Column(db.DateTime)
 
     def __repr__(self):
-        return '<Command {}>'.format(self.__tablename__)
+        return "<Command {}>".format(self.__tablename__)
