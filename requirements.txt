@@ -21,7 +21,7 @@ jsmin==2.2.2
 lesscpy==0.14.0
 MarkupSafe==1.1.1
 numpy==1.19.2
-packaging==20.4
+packaging==20.8
 pandas==1.1.4
 plotly==4.11.0
 pluggy==0.13.1
