@@ -17,11 +17,11 @@ class Config:
 
     # Database
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_HOST = "hackers-data-do-user-1142484-0.db.ondigitalocean.com"
-    SQLALCHEMY_DATABASE_TABLE = "commands"
+    SQLALCHEMY_DATABASE_HOST = environ.get("SQLALCHEMY_DATABASE_URI")
+    SQLALCHEMY_DATABASE_TABLE = environ.get("SQLALCHEMY_DATABASE_TABLE")
     SQLALCHEMY_DATABASE_NAME = environ.get("SQLALCHEMY_DATABASE_NAME")
     SQLALCHEMY_CONNECT_ARGS = {"ssl": {"ca": "./creds/ca-certificate.crt"}}
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Flask-Assets
     LESS_BIN = environ.get("LESS_BIN")
