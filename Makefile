@@ -54,7 +54,6 @@ update: env
 	.venv/bin/python3 -m pip install -U pip
 	poetry update
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
-	make format
 
 
 .PHONY: format
@@ -76,4 +75,4 @@ clean:
 	find . -name 'Pipefile.lock' -delete
 	find . -name 'logs/*' -delete
 	find . -name '.pytest_cache' -delete
-	find . -name '.webassets-cache/*' -delete
+	find . -name '.webassects-cache/*' -delete

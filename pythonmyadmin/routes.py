@@ -18,11 +18,13 @@ def home():
     host = app.config["SQLALCHEMY_DATABASE_HOST"]
     db_name = app.config["SQLALCHEMY_DATABASE_NAME"]
     return render_template(
-        "index.html",
+        "index.jinja2",
         tables=tables,
         title="Database Tables.",
         template="home-template",
         host_name=host,
+        database_name=db_name,
+        num_tables=len(tables),
         table_summary=f"Displaying {len(tables)} tables found in database {db_name}:",
     )
 
@@ -31,7 +33,7 @@ def home():
 def database():
     """Database Configuration Page."""
     return render_template(
-        "index.html",
+        "index.jinja2",
         title="Connect a Database",
         template="database-template",
         body="This is an example homepage, served with Flask.",
@@ -42,7 +44,7 @@ def database():
 def users():
     """Users Page."""
     return render_template(
-        "index.html",
+        "index.jinja2",
         title="Users",
         template="users-template",
         body="This is an example homepage, served with Flask.",
@@ -53,7 +55,7 @@ def users():
 def settings():
     """Settings Page."""
     return render_template(
-        "index.html",
+        "index.jinja2",
         title="Settings",
         template="settings-template",
         body="This is an example homepage, served with Flask.",

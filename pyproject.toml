@@ -34,12 +34,12 @@ redis = "*"
 python-dotenv = "*"
 
 [tool.poetry.dev-dependencies]
-Pytest = "*"
-Lesscpy = "*"
-Cssmin = "*"
-Jsmin = "*"
+pytest = "*"
 black = "^20.8b1"
 isort = "^5.6.4"
+cssmin = "^0.2.0"
+jsmin = "^2.2.2"
+lesscpy = "^0.14.0"
 
 [tool.poetry.scripts]
 run = "wsgi:app"
