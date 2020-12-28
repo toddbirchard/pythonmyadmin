@@ -45,11 +45,21 @@ def create_layout(datatable: DataTable, table_df: DataFrame):
     return html.Div(
         id="database-table-container",
         children=[
-            dcc.Dropdown(
-                id="type-dropdown",
-                options=[{"label": i, "value": i} for i in table_df.type.unique() if i],
-                multi=True,
-                placeholder="Filter commands by type",
+            html.Div(
+                id="controls",
+                children=[
+                    dcc.Input(id="search", type="text", placeholder=""),
+                    dcc.Dropdown(
+                        id="type-dropdown",
+                        options=[
+                            {"label": i, "value": i}
+                            for i in table_df.type.unique()
+                            if i
+                        ],
+                        multi=True,
+                        placeholder="Filter commands by type",
+                    ),
+                ],
             ),
             datatable,
             html.Div(id="callback-container"),
@@ -77,13 +87,17 @@ def init_callbacks(dash_app: Dash, table_df: DataFrame):
     """Dash callbacks."""
 
     @dash_app.callback(
-        Output("database-table", "data"), [Input("type-dropdown", "value")]
+        Output("database-table", "data"),
+        [Input("type-dropdown", "value"), Input("search", "value")],
     )
-    def filter_by_type(types):
+    def filter_by_type(types, search):
         """Updates chart based on filtering."""
         dff = table_df
 
         if types is not None and bool(types):
             dff = table_df.loc[table_df["type"].isin(types)]
+
+        # if search:
+        # dff = table_df.loc[[search in dff['command']]]
 
         return dff.to_dict("records")

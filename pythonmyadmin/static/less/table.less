@@ -96,7 +96,7 @@
       padding: 15px 10px !important;
       overflow: hidden !important;
       border: 0 !important;
-      font-size: 0.73em !important;
+      font-size: 0.6em !important;
       line-height: 1.25 !important;
       text-align: center !important;
 
@@ -113,11 +113,6 @@
         width: 100%;
       }
 
-      &:first-of-type,
-      &:last-of-type {
-        max-width: 50px !important;
-      }
-
       .dash-cell-value {
         display: block !important;
         max-width: 500px;
@@ -130,23 +125,25 @@
       }
     }
 
-    .column-0,
-    .column-3 {
+    .column-0 {
       max-width: 80px !important;
     }
 
-    .column-1 {
-      max-width: 50px !important;
+    td[data-dash-column="type"] {
+      max-width: 70px !important;
     }
 
-    td[data-dash-column="command"],
-    .column-2 {
+    td[data-dash-column="command"] {
       max-width: 200px !important;
     }
 
     td[data-dash-column="response"] {
-      max-width: 400px;
+      max-width: 400px !important;
       overflow: hidden;
+    }
+
+    td[data-dash-column="command"] {
+      width: 110px !important;
     }
 
     td[data-dash-column="index"] {

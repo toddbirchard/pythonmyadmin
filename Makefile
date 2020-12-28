@@ -75,4 +75,5 @@ clean:
 	find . -name 'Pipefile.lock' -delete
 	find . -name 'logs/*' -delete
 	find . -name '.pytest_cache' -delete
-	find . -name '.webassects-cache/*' -delete
+	find . -name '.webassets-cache/*' -delete
+	find . -name 'pythonmyadmin/static/.webassets-cache/*' -delete
