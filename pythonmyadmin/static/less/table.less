@@ -40,7 +40,8 @@
       border-bottom: 1px solid #e5e7eb !important;
       border-left: 0 !important;
       background: white !important;
-      color: #404552;
+      color: #636a73;
+      font-weight: 600 !important;
 
       .column-header--sort {
         margin-right: 7px;
@@ -74,7 +75,6 @@
 
         span:last-of-type {
           font-size: 0.85em;
-          font-weight: 400;
           text-transform: uppercase;
         }
       }
@@ -181,11 +181,37 @@
     }
   }
 
+  #controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #search {
+    width: 100%;
+    margin-right: 20px !important;
+    padding: 0 15px !important;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 1.1em;
+
+    &::placeholder {
+      color: #aaa;
+    }
+
+  }
+
+  .Select-control {
+    min-width: 200px;
+  }
+
+  #search,
   .Select-control {
     margin: 0;
     padding: 8px;
     border: 0;
     box-shadow: 0 0 4px #cdd3e2;
+
 
     .Select-placeholder {
       height: fit-content;
@@ -202,7 +228,9 @@
       }
 
       .Select-value-label {
-        padding: 7px 13px;
+        padding: 4px 9px;
+        line-height: 1;
+        font-size: .8em;
       }
     }
   }
@@ -210,6 +238,7 @@
   .Select-menu-outer {
     border: 0;
     box-shadow: 0 0 6px #cdd3e2;
+    font-size: .8em;
 
     * {
       width: 100%;

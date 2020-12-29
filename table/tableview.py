@@ -1,4 +1,6 @@
 """Dash app for database table view."""
+from typing import List, Optional
+
 import dash_core_components as dcc
 import dash_html_components as html
 from dash import Dash
@@ -48,7 +50,9 @@ def create_layout(datatable: DataTable, table_df: DataFrame):
             html.Div(
                 id="controls",
                 children=[
-                    dcc.Input(id="search", type="text", placeholder=""),
+                    dcc.Input(
+                        id="search", type="text", placeholder="Search by command"
+                    ),
                     dcc.Dropdown(
                         id="type-dropdown",
                         options=[
@@ -57,7 +61,7 @@ def create_layout(datatable: DataTable, table_df: DataFrame):
                             if i
                         ],
                         multi=True,
-                        placeholder="Filter commands by type",
+                        placeholder="Filter by type",
                     ),
                 ],
             ),
@@ -90,14 +94,14 @@ def init_callbacks(dash_app: Dash, table_df: DataFrame):
         Output("database-table", "data"),
         [Input("type-dropdown", "value"), Input("search", "value")],
     )
-    def filter_by_type(types, search):
+    def filter_by_type(types: Optional[List[str]], search: Optional[str]):
         """Updates chart based on filtering."""
         dff = table_df
 
         if types is not None and bool(types):
-            dff = table_df.loc[table_df["type"].isin(types)]
+            dff = dff.loc[table_df["type"].isin(types)]
 
-        # if search:
-        # dff = table_df.loc[[search in dff['command']]]
+        if search:
+            dff = dff.loc[dff["command"].str.contains(search)]
 
         return dff.to_dict("records")
