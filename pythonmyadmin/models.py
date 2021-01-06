@@ -5,7 +5,7 @@ from . import db
 
 
 class Command(db.Model):
-    """Chatbot command table."""
+    """Command table."""
 
     __tablename__ = app.config["SQLALCHEMY_DATABASE_TABLE"]
     __table_args__ = {"extend_existing": True}
@@ -18,4 +18,4 @@ class Command(db.Model):
     created_at = db.Column(db.DateTime)
 
     def __repr__(self):
-        return "<Command {}>".format(self.__tablename__)
+        return "<Command {}>".format(app.config["SQLALCHEMY_DATABASE_TABLE"])

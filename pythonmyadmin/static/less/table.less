@@ -133,32 +133,20 @@
       max-width: 70px !important;
     }
 
-    td[data-dash-column="command"] {
-      max-width: 200px !important;
-    }
-
     td[data-dash-column="response"] {
       max-width: 400px !important;
       overflow: hidden;
     }
 
+    th[data-dash-column="command"],
     td[data-dash-column="command"] {
       width: 110px !important;
     }
+  }
 
-    td[data-dash-column="index"] {
-      text-align: center !important;
-
-      div {
-        text-align: center !important;
-      }
-    }
-
-    td[data-dash-column="index"] {
-      color: #939da4;
-      font-size: 1.1em;
-      font-weight: 500;
-    }
+  th[data-dash-column="created_at"],
+  td[data-dash-column="created_at"] {
+    min-width: 145px;
   }
 
   table {

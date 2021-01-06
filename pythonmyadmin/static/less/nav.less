@@ -15,7 +15,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 1000px;
+    width: 975px;
     max-width: 90%;
     margin: auto;
 
@@ -31,9 +31,6 @@ header {
       justify-content: space-between;
       color: #59657b;
       line-height: 1;
-      @media(max-width: 600px) {
-        display: none;
-      }
 
       a {
         display: flex;
@@ -54,6 +51,10 @@ header {
   }
 
   .right-nav {
+    @media (max-width: 600px) {
+      display: none;
+    }
+
     a {
       margin-left: 30px;
       color: #70829d;

@@ -77,3 +77,4 @@ clean:
 	find . -name '.pytest_cache' -delete
 	find . -name '.webassets-cache/*' -delete
 	find . -name 'pythonmyadmin/static/.webassets-cache/*' -delete
+	rm -rf pythonmyadmin/static/.webassets-cache

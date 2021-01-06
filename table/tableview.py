@@ -6,13 +6,14 @@ import dash_html_components as html
 from dash import Dash
 from dash.dependencies import Input, Output
 from dash_table import DataTable
+from flask import Flask
 from pandas import DataFrame
 
 from .data import column_dist_chart, get_table_data
 from .layout import app_layout
 
 
-def create_dash_view(server):
+def create_dash_view(server: Flask) -> Flask:
     """Initiate Plotly Dash view."""
     external_stylesheets = [
         "/static/dist/css/style.css",
@@ -83,6 +84,7 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         sort_action="native",
         sort_mode="native",
         page_size=9000,
+        editable=True,
     )
     return table
 
