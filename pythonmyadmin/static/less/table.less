@@ -129,18 +129,20 @@
       max-width: 80px !important;
     }
 
-    td[data-dash-column="type"] {
+    td[data-dash-column="type"],
+    th[data-dash-column="type"]{
       max-width: 70px !important;
     }
 
-    td[data-dash-column="response"] {
+    td[data-dash-column="response"],
+    th[data-dash-column="response"]{
       max-width: 400px !important;
       overflow: hidden;
     }
 
     th[data-dash-column="command"],
     td[data-dash-column="command"] {
-      width: 110px !important;
+      min-width: 130px !important;
     }
   }
 
@@ -204,8 +206,7 @@
     .Select-placeholder {
       height: fit-content;
       margin: auto;
-      padding-right: 15px;
-      padding-left: 15px;
+      padding: 5px 15px;
     }
 
     .Select-value {

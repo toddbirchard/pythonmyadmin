@@ -1,7 +1,7 @@
 """Data models."""
 from flask import current_app as app
 
-from . import db
+from pythonmyadmin import db
 
 
 class Command(db.Model):

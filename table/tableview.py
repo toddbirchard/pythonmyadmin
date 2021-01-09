@@ -9,8 +9,8 @@ from dash_table import DataTable
 from flask import Flask
 from pandas import DataFrame
 
-from .data import column_dist_chart, get_table_data
-from .layout import app_layout
+from clients import db
+from table.layout import app_layout
 
 
 def create_dash_view(server: Flask) -> Flask:
@@ -30,11 +30,11 @@ def create_dash_view(server: Flask) -> Flask:
     dash_app.index_string = app_layout
 
     # Get DataFrame
-    table_df = get_table_data()
+    table_df = db.get_table_data()
     datatable = create_data_table(table_df)
 
     for column in table_df:
-        column_dist_chart(table_df, column)
+        db.column_dist_chart(table_df, column)
 
     # Create Dash Layout comprised of Data Tables
     dash_app.layout = create_layout(datatable, table_df)
