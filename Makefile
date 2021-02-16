@@ -1,5 +1,5 @@
 SRCPATH := $(shell pwd)
-PROJECTNAME := $(shell basename $(CURDIR))
+PROJECTNAME := $(shell basename $CURDIR)
 ENTRYPOINT := $(PROJECTNAME).ini
 
 define HELP
@@ -46,7 +46,7 @@ restart: env
 .PHONY: deploy
 deploy:
 	make clean
-	$(shell . ./deploy.sh)
+	. ./deploy.sh
 
 
 .PHONY: update
@@ -73,8 +73,8 @@ clean:
 	find . -name '__pycache__' -delete
 	find . -name 'poetry.lock' -delete
 	find . -name 'Pipefile.lock' -delete
-	find . -name 'logs/*' -delete
-	find . -name '.pytest_cache' -delete
-	find . -name '.webassets-cache/*' -delete
-	find . -name 'pythonmyadmin/static/.webassets-cache/*' -delete
+	find . -wholename 'logs/*' -delete
+	find . -wholename '.pytest_cache' -delete
+	find . -wholename '.webassets-cache/*' -delete
+	find . -wholename 'pythonmyadmin/static/.webassets-cache/*' -delete
 	rm -rf pythonmyadmin/static/.webassets-cache
