@@ -76,7 +76,13 @@ def create_layout(datatable: DataTable, table_df: DataFrame):
 
 
 def create_data_table(table_df: DataFrame) -> DataTable:
-    """Create table from Pandas DataFrame."""
+    """
+    Create Plotly DataTable component from Pandas DataFrame.
+
+    :param table_df: DataFrame created from SQL table.
+    :type table_df: DataFrame
+    :returns: DataTable
+    """
     table = DataTable(
         id="database-table",
         columns=[{"name": i, "id": i} for i in table_df.columns],
@@ -90,20 +96,35 @@ def create_data_table(table_df: DataFrame) -> DataTable:
 
 
 def init_callbacks(dash_app: Dash, table_df: DataFrame):
-    """Dash callbacks."""
+    """
+    Initialize callbacks for user interactions.
+
+    :param dash_app: Plotly Dash application object.
+    :type dash_app: Dash
+    :param table_df: DataFrame created from SQL table.
+    :type table_df: DataFrame
+    """
 
     @dash_app.callback(
         Output("database-table", "data"),
         [Input("type-dropdown", "value"), Input("search", "value")],
     )
-    def filter_by_type(types: Optional[List[str]], search: Optional[str]):
-        """Updates chart based on filtering."""
+    def filter_by_type(types: Optional[List[str]], search_query: Optional[str]) -> dict:
+        """
+        Filter data via text search or dropdowns.
+
+        :param types: Category associated with each row in a SQL table.
+        :type types: Optional[List[str]]
+        :param search_query: Category associated with each row in a SQL table.
+        :type search_query: Optional[str]
+        :returns: dict
+        """
         dff = table_df
 
         if types is not None and bool(types):
             dff = dff.loc[table_df["type"].isin(types)]
 
-        if search:
-            dff = dff.loc[dff["command"].str.contains(search)]
+        if search_query:
+            dff = dff.loc[dff["command"].str.contains(search_query.lower().strip())]
 
         return dff.to_dict("records")

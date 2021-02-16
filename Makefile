@@ -50,7 +50,7 @@ deploy:
 
 
 .PHONY: update
-update: env
+update: deploy
 	.venv/bin/python3 -m pip install -U pip
 	poetry update
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
