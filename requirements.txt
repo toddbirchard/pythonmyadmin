@@ -15,7 +15,7 @@ future==0.18.2; python_version >= "2.7" and python_full_version < "3.0.0" or pyt
 itsdangerous==1.1.0; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
 jinja2==2.11.2; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
 markupsafe==1.1.1; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
-numpy==1.19.5; python_version >= "3.6" and python_full_version >= "3.7.1"
+numpy==1.22.0; python_version >= "3.6" and python_full_version >= "3.7.1"
 pandas==1.2.0; python_full_version >= "3.7.1"
 plotly==4.14.1; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.3.0"
 pymysql==1.0.1; python_version >= "3.6"
