@@ -16,6 +16,6 @@ def compile_assets(app):
     js_bundle = Bundle("js/*.js", filters="jsmin", output="dist/js/main.js")
     assets.register("less_all", less_bundle)
     assets.register("js_all", js_bundle)
-    if app.config["FLASK_ENV"] != "production":
+    if app.config["ENVIRONMENT"] != "production":
         less_bundle.build(force=True)
         js_bundle.build()

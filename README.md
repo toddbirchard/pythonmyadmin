@@ -13,12 +13,12 @@
 
 Lightweight Python GUI for exploring and modifying data in database. Spoof of PhpMyAdmin - not affiliated in any way.
 
-# Getting Started
+## Getting Started
 
 Replace the values in **.env.example** with your values and rename this file to **.env**:
 
 * `FLASK_APP`: Entry point of your application (should be `wsgi.py`).
-* `FLASK_ENV`: The environment to run your app in (either `development` or `production`).
+* `FLASK_DEBUG`: The environment to run your app in (either `development` or `production`).
 * `SECRET_KEY`: Randomly generated string of characters used to encrypt your app's data.
 * `SQLALCHEMY_DATABASE_URI`: Connection URI of a SQL database
 
@@ -29,7 +29,7 @@ Replace the values in **.env.example** with your values and rename this file to 
 Get up and running with `make deploy`:
 
 ```shell
-$ git clone https://github.com/hackersandslackers/flask-blueprint-tutorial.git
-$ cd flask-blueprint-tutorial
-$ make deploy
-``` 
+git clone https://github.com/hackersandslackers/flask-blueprint-tutorial.git
+cd flask-blueprint-tutorial
+make deploy
+```

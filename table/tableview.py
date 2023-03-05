@@ -1,11 +1,11 @@
 """Dash app for database table view."""
 from typing import List, Optional
 
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 from dash import Dash
 from dash.dependencies import Input, Output
-from dash_table import DataTable
+from dash.dash_table import DataTable
 from flask import Flask
 from pandas import DataFrame
 

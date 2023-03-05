@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
 from sqlalchemy import create_engine
-from sqlalchemy.types import String, Text
+from sqlalchemy.types import String, Text, Integer, DateTime
 
 
 class Database:
@@ -22,7 +22,13 @@ class Database:
             self.engine,
             if_exists="append",
             index=True,
-            dtype={"command": String(255), "response": Text},
+            dtype={
+                "id": Integer,
+                "command": String(255),
+                "response": Text,
+                "type": String(255),
+                "created_at": DateTime,
+            },
         )
         response = f"Successfully uploaded {str(df.count)} rows."
         return response

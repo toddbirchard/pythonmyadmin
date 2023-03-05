@@ -17,14 +17,17 @@ def create_app() -> Flask:
 
         # Construct the data set
         from . import routes
+
         app.register_blueprint(routes.main_bp)
 
         # Compile assets
         from .assets import compile_assets
+
         compile_assets(app)
 
         # Dash view
         from table import tableview
+
         app = tableview.create_dash_view(app)
 
         return app
