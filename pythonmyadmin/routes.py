@@ -1,20 +1,21 @@
 """Core route declaration."""
+from typing import List
+
 from flask import Blueprint
 from flask import current_app as app
 from flask import render_template
+from sqlalchemy.sql import text
 
 from . import db
 
 # Create Blueprint
-main_bp = Blueprint(
-    "main_bp", __name__, template_folder="templates", static_folder="static"
-)
+main_bp = Blueprint("main_bp", __name__, template_folder="templates", static_folder="static")
 
 
 @main_bp.route("/")
 def home():
     """Database Table Selection Page."""
-    tables = db.engine.table_names()
+    tables = get_tables(db)
     host = app.config["SQLALCHEMY_DATABASE_HOST"]
     db_name = app.config["SQLALCHEMY_DATABASE_NAME"]
     return render_template(
@@ -60,3 +61,15 @@ def settings():
         template="settings-template",
         body="This is an example homepage, served with Flask.",
     )
+
+
+def get_tables(db) -> List[str]:
+    """
+    Get list of tables in database.
+
+    :returns: List[str]
+    """
+    with db.engine.connect() as conn:
+        tables = conn.execute(text("SHOW TABLES;")).fetchall()
+        table_names = [table[0] for table in tables]
+        return table_names

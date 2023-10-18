@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
 from sqlalchemy import create_engine
-from sqlalchemy.types import String, Text
+from sqlalchemy.types import DateTime, Integer, String, Text
 
 
 class Database:
@@ -22,7 +22,13 @@ class Database:
             self.engine,
             if_exists="append",
             index=True,
-            dtype={"command": String(255), "response": Text},
+            dtype={
+                "id": Integer,
+                "command": String(255),
+                "response": Text,
+                "type": String(255),
+                "created_at": DateTime,
+            },
         )
         response = f"Successfully uploaded {str(df.count)} rows."
         return response
@@ -42,7 +48,5 @@ class Database:
     @staticmethod
     def column_dist_chart(table_df: DataFrame, column):
         """Aggregate column values"""
-        grouped_column = (
-            table_df.groupby(column).count().sort_values(column, ascending=False)
-        )
+        grouped_column = table_df.groupby(column).count().sort_values(column, ascending=False)
         return grouped_column

@@ -1,11 +1,9 @@
 """Dash app for database table view."""
 from typing import List, Optional
 
-import dash_core_components as dcc
-import dash_html_components as html
-from dash import Dash
+from dash import Dash, dcc, html
+from dash.dash_table import DataTable
 from dash.dependencies import Input, Output
-from dash_table import DataTable
 from flask import Flask
 from pandas import DataFrame
 
@@ -51,16 +49,10 @@ def create_layout(datatable: DataTable, table_df: DataFrame):
             html.Div(
                 id="controls",
                 children=[
-                    dcc.Input(
-                        id="search", type="text", placeholder="Search by command"
-                    ),
+                    dcc.Input(id="search", type="text", placeholder="Search by command"),
                     dcc.Dropdown(
                         id="type-dropdown",
-                        options=[
-                            {"label": i, "value": i}
-                            for i in table_df.type.unique()
-                            if i
-                        ],
+                        options=[{"label": i, "value": i} for i in table_df.type.unique() if i],
                         multi=True,
                         placeholder="Filter by type",
                     ),
@@ -68,9 +60,7 @@ def create_layout(datatable: DataTable, table_df: DataFrame):
             ),
             datatable,
             html.Div(id="callback-container"),
-            html.Div(
-                id="container-button-basic", children=[html.Div(id="save-status")]
-            ),
+            html.Div(id="container-button-basic", children=[html.Div(id="save-status")]),
         ],
     )
 

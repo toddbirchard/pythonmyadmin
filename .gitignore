@@ -106,9 +106,13 @@ venv.bak/
 .idea
 .DS_Store
 .webassets-cache
+.vscode
 
 # Secrets
 creds
 creds/*
 *.crt
 gcloud.json
+
+# Socket
+*.sock
