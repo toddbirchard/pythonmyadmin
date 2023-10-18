@@ -1,6 +1,6 @@
 PROJECT_NAME := $(shell basename $CURDIR)
-VIRTUAL_ENV := $(CURDIR)/.venv
-LOCAL_PYTHON := $(VIRTUAL_ENV)/bin/python3
+VIRTUAL_ENVIRONMENT := $(CURDIR)/.venv
+LOCAL_PYTHON := $(VIRTUAL_ENVIRONMENT)/bin/python3
 
 define HELP
 Manage $(PROJECT_NAME). Usage:
@@ -16,16 +16,13 @@ make clean      - Remove extraneous compiled files, caches, logs, etc.
 endef
 export HELP
 
-
 .PHONY: run install deploy update format lint clean help
 
 
 all help:
 	@echo "$$HELP"
 
-
 env: $(VIRTUAL_ENV)
-
 
 $(VIRTUAL_ENV):
 	if [ ! -d $(VIRTUAL_ENV) ]; then \
@@ -33,48 +30,41 @@ $(VIRTUAL_ENV):
 		python3 -m venv $(VIRTUAL_ENV); \
 	fi
 
-
 .PHONY: run
 run: env
-	  $(VIRTUAL_ENV)/bin/uwsgi --socket 127.0.0.1:8090 --protocol=http -w wsgi
-
-
+	$(LOCAL_PYTHON) -m wsgi 
 
 .PHONY: install
 install: env
 	$(LOCAL_PYTHON) -m pip install --upgrade pip setuptools wheel && \
 	$(LOCAL_PYTHON) -m pip install -r requirements.txt && \
-	echo Installed dependencies in \`${VIRTUAL_ENV}\`;
-
+	echo "Installed dependencies in virtualenv \`${VIRTUAL_ENVIRONMENT}\`";
 
 .PHONY: deploy
 deploy:
+	make clean \
 	make install \
 	make run
-
 
 .PHONY: test
 test: env
 	$(LOCAL_PYTHON) -m \
-		coverage run -m pytest -vv \
+		coverage run -m pytest -v \
 		--disable-pytest-warnings && \
 		coverage html --title='Coverage Report' -d .reports && \
 		open .reports/index.html
-
 
 .PHONY: update
 update: env
 	$(LOCAL_PYTHON) -m pip install --upgrade pip setuptools wheel && \
 	poetry update && \
 	poetry export -f requirements.txt --output requirements.txt --without-hashes && \
-	echo Installed dependencies in \`${VIRTUAL_ENV}\`;
-
+	echo "Updated dependencies in virtualenv \`${VIRTUAL_ENVIRONMENT}\`";
 
 .PHONY: format
 format: env
-	$(LOCAL_PYTHON) -m isort --multi-line=3 .
+	$(LOCAL_PYTHON) -m isort --multi-line=3 . && \
 	$(LOCAL_PYTHON) -m black .
-
 
 .PHONY: lint
 lint: env
@@ -83,7 +73,6 @@ lint: env
 			--exclude .git,.github,__pycache__,.pytest_cache,.venv,logs,creds,.venv,docs,logs,.reports \
 			--show-source \
 			--statistics
-
 
 .PHONY: clean
 clean:

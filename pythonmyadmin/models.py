@@ -12,10 +12,10 @@ class Command(db.Model):
 
     # Columns
     id = db.Column(db.Integer, primary_key=True)
-    command = db.Column(db.String(255), index=True, unique=True, nullable=False)
+    command = db.Column(db.String(255), index=True, unique=True)
     response = db.Column(db.Text, nullable=False)
     type = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime)
 
     def __repr__(self):
-        return "<Command {}>".format(app.config["SQLALCHEMY_DATABASE_TABLE"])
+        return f"<Command id={self.id}, name={self.command}, type={self.type}>"

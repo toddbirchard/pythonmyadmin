@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
 from sqlalchemy import create_engine
-from sqlalchemy.types import String, Text, Integer, DateTime
+from sqlalchemy.types import DateTime, Integer, String, Text
 
 
 class Database:
@@ -48,7 +48,5 @@ class Database:
     @staticmethod
     def column_dist_chart(table_df: DataFrame, column):
         """Aggregate column values"""
-        grouped_column = (
-            table_df.groupby(column).count().sort_values(column, ascending=False)
-        )
+        grouped_column = table_df.groupby(column).count().sort_values(column, ascending=False)
         return grouped_column

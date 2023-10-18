@@ -6,7 +6,11 @@ db = SQLAlchemy()
 
 
 def create_app() -> Flask:
-    """Construct the core application."""
+    """
+    Construct the core application.
+
+    :returns: Flask
+    """
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object("config.Config")
     db.init_app(app)
@@ -15,18 +19,19 @@ def create_app() -> Flask:
         # Create tables for our models
         db.create_all()
 
-        # Construct the data set
-        from . import routes
+        # Import parts of our application
+        from table import tableview
 
+        from . import routes
+        from .assets import compile_js_assets, compile_style_assets
+
+        # Register App Blueprint
         app.register_blueprint(routes.main_bp)
 
-        # Compile assets
-        from .assets import compile_assets
-
-        compile_assets(app)
-
-        # Dash view
-        from table import tableview
+        # Compile static assets
+        if app.config["ENVIRONMENT"] == "development":
+            compile_js_assets(app)
+            compile_style_assets(app)
 
         app = tableview.create_dash_view(app)
 

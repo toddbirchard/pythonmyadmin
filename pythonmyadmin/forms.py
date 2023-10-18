@@ -19,14 +19,8 @@ class DatabaseForm(Form):
             Length(min=4, message="Enter a valid port."),
         ],
     )
-    user = StringField(
-        "Username", validators=[Length(min=6, message="Enter a valid email address.")]
-    )
-    password = PasswordField(
-        "DB Password", validators=[DataRequired(message="Enter a password.")]
-    )
-    database = StringField(
-        "Website", validators=[DataRequired(message="Enter a database name.")]
-    )
+    user = StringField("Username", validators=[Length(min=6, message="Enter a valid email address.")])
+    password = PasswordField("DB Password", validators=[DataRequired(message="Enter a password.")])
+    database = StringField("Website", validators=[DataRequired(message="Enter a database name.")])
     schema = StringField("Schema", validators=[Optional()])
     submit = SubmitField("Connect")
