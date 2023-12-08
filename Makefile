@@ -71,6 +71,7 @@ lint: env
 	$(LOCAL_PYTHON) -m flake8 . --count \
 			--select=E9,F63,F7,F82 \
 			--exclude .git,.github,__pycache__,.pytest_cache,.venv,logs,creds,.venv,docs,logs,.reports \
+			--max-line-length=120 \
 			--show-source \
 			--statistics
 

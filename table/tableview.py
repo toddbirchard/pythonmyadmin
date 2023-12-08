@@ -12,7 +12,13 @@ from table.layout import app_layout
 
 
 def create_dash_view(server: Flask) -> Flask:
-    """Initiate Plotly Dash view."""
+    """
+    Initiate Plotly Dash view.
+
+    :param Flask server: Flask server object.
+
+    :returns: Flask
+    """
     external_stylesheets = [
         "/static/dist/css/style.css",
         "https://fonts.googleapis.com/css?family=Lato::300,700",
@@ -29,20 +35,27 @@ def create_dash_view(server: Flask) -> Flask:
 
     # Get DataFrame
     table_df = db.get_table_data()
-    datatable = create_data_table(table_df)
+    dash_table = create_data_table(table_df)
 
     for column in table_df:
         db.column_dist_chart(table_df, column)
 
     # Create Dash Layout comprised of Data Tables
-    dash_app.layout = create_layout(datatable, table_df)
+    dash_app.layout = create_layout(dash_table, table_df)
     init_callbacks(dash_app, table_df)
 
     return dash_app.server
 
 
-def create_layout(datatable: DataTable, table_df: DataFrame):
-    """Create Dash layout for table editor."""
+def create_layout(dash_table: DataTable, table_df: DataFrame) -> html.Div:
+    """
+    Create Dash layout for table editor.
+
+    :param DataTable dash_table: Plotly Dash DataTable component.
+    :param DataFrame table_df: DataFrame created from SQL table.
+
+    :returns: html.Div
+    """
     return html.Div(
         id="database-table-container",
         children=[
@@ -58,7 +71,7 @@ def create_layout(datatable: DataTable, table_df: DataFrame):
                     ),
                 ],
             ),
-            datatable,
+            dash_table,
             html.Div(id="callback-container"),
             html.Div(id="container-button-basic", children=[html.Div(id="save-status")]),
         ],
@@ -80,7 +93,7 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         sort_action="native",
         sort_mode="native",
         page_size=9000,
-        editable=True,
+        editable=False,
     )
     return table
 

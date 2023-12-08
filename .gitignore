@@ -102,12 +102,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# System & Cache files
-.idea
-.DS_Store
-.webassets-cache
-.vscode
-
 # Secrets
 creds
 creds/*
@@ -116,3 +110,11 @@ gcloud.json
 
 # Socket
 *.sock
+
+# System & Cache files
+.DS_Store
+.webassets-cache
+
+# IDES
+.idea
+.vscode

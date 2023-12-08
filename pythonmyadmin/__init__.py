@@ -20,10 +20,9 @@ def create_app() -> Flask:
         db.create_all()
 
         # Import parts of our application
+        from pythonmyadmin import routes
+        from pythonmyadmin.assets import compile_js_assets, compile_style_assets
         from table import tableview
-
-        from . import routes
-        from .assets import compile_js_assets, compile_style_assets
 
         # Register App Blueprint
         app.register_blueprint(routes.main_bp)
