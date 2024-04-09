@@ -52,7 +52,6 @@ def update_output(n_clicks, value):
         n_clicks
     )'''
 
-
 """@dash_app.callback(
 Output('callback-container', 'children'),
 [Input('database-table', 'row_update'),

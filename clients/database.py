@@ -5,6 +5,8 @@ from sqlalchemy.types import DateTime, Integer, String, Text
 
 
 class Database:
+    """Database connection object."""
+
     def __init__(self, uri, table, args=None):
         self.uri = uri
         self.table = table
@@ -12,7 +14,7 @@ class Database:
 
     @property
     def engine(self):
-        # Database connection engine
+        """Database connection engine"""
         return create_engine(self.uri, connect_args=self.args)
 
     def upload_dataframe(self, df: DataFrame):

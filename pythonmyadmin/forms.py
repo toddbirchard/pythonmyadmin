@@ -1,4 +1,5 @@
 """Form classes."""
+
 from wtforms import Form, PasswordField, SelectField, StringField, SubmitField
 from wtforms.validators import DataRequired, Length, Optional
 
