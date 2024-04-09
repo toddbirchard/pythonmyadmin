@@ -30,9 +30,11 @@ $(VIRTUAL_ENV):
 		python3 -m venv $(VIRTUAL_ENV); \
 	fi
 
+
 .PHONY: run
 run: env
-	$(LOCAL_PYTHON) -m wsgi 
+	$(LOCAL_PYTHON) -m gunicorn -w 4 wsgi:app
+
 
 .PHONY: install
 install: env
@@ -40,11 +42,13 @@ install: env
 	$(LOCAL_PYTHON) -m pip install -r requirements.txt && \
 	echo "Installed dependencies in virtualenv \`${VIRTUAL_ENVIRONMENT}\`";
 
+
 .PHONY: deploy
 deploy:
 	make clean \
 	make install \
 	make run
+
 
 .PHONY: test
 test: env
@@ -54,6 +58,7 @@ test: env
 		coverage html --title='Coverage Report' -d .reports && \
 		open .reports/index.html
 
+
 .PHONY: update
 update: env
 	$(LOCAL_PYTHON) -m pip install --upgrade pip setuptools wheel && \
@@ -61,10 +66,12 @@ update: env
 	poetry export -f requirements.txt --output requirements.txt --without-hashes && \
 	echo "Updated dependencies in virtualenv \`${VIRTUAL_ENVIRONMENT}\`";
 
+
 .PHONY: format
 format: env
 	$(LOCAL_PYTHON) -m isort --multi-line=3 . && \
 	$(LOCAL_PYTHON) -m black .
+
 
 .PHONY: lint
 lint: env
@@ -74,6 +81,7 @@ lint: env
 			--max-line-length=120 \
 			--show-source \
 			--statistics
+
 
 .PHONY: clean
 clean:

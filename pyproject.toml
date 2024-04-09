@@ -31,8 +31,8 @@ isort = "*"
 cssmin = "*"
 jsmin = "*"
 lesscpy = "*"
-uwsgi = "*"
 flake8 = "*"
+gunicorn = "*"
 
 [tool.poetry.scripts]
 run = "wsgi:app"
