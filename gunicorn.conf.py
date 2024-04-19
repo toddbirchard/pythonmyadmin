@@ -13,7 +13,7 @@ ENVIRONMENT = environ.get("ENVIRONMENT")
 
 proc_name = "pythonmyadmin"
 wsgi_app = "wsgi:app"
-bind = "unix:flask.sock"
+bind = "unix:pythonmyadmin.sock"
 threads = 4
 workers = 2
 

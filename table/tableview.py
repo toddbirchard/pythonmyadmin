@@ -1,8 +1,9 @@
 """Dash app for database table view."""
+
 from typing import List, Optional
 
 from dash import Dash, dcc, html
-from dash.dash_table import DataTable
+from dash_ag_grid import AgGrid
 from dash.dependencies import Input, Output
 from flask import Flask
 from pandas import DataFrame
@@ -34,20 +35,20 @@ def create_dash_view(server: Flask) -> Flask:
     dash_app.index_string = app_layout
 
     # Get DataFrame
-    table_df = db.get_table_data()
-    dash_table = create_data_table(table_df)
+    df = db.get_table_data()
+    dash_grid = create_data_grid(df)
 
-    for column in table_df:
-        db.column_dist_chart(table_df, column)
+    for column in df:
+        db.column_dist_chart(df, column)
 
     # Create Dash Layout comprised of Data Tables
-    dash_app.layout = create_layout(dash_table, table_df)
-    init_callbacks(dash_app, table_df)
+    dash_app.layout = create_layout(dash_grid, df)
+    init_callbacks(dash_app, df)
 
     return dash_app.server
 
 
-def create_layout(dash_table: DataTable, table_df: DataFrame) -> html.Div:
+def create_layout(dash_grid: AgGrid, df: DataFrame) -> html.Div:
     """
     Create Dash layout for table editor.
 
@@ -65,37 +66,36 @@ def create_layout(dash_table: DataTable, table_df: DataFrame) -> html.Div:
                     dcc.Input(id="search", type="text", placeholder="Search by command"),
                     dcc.Dropdown(
                         id="type-dropdown",
-                        options=[{"label": i, "value": i} for i in table_df.type.unique() if i],
+                        options=[{"label": i, "value": i} for i in df.type.unique() if i],
                         multi=True,
                         placeholder="Filter by type",
                     ),
                 ],
             ),
-            dash_table,
+            dash_grid,
             html.Div(id="callback-container"),
             html.Div(id="container-button-basic", children=[html.Div(id="save-status")]),
         ],
     )
 
 
-def create_data_table(table_df: DataFrame) -> DataTable:
+def create_data_grid(df: DataFrame) -> AgGrid:
     """
     Create Plotly DataTable component from Pandas DataFrame.
 
-    :param table_df: DataFrame created from SQL table.
-    :type table_df: DataFrame
-    :returns: DataTable
+    :param DataFrame df: DataFrame parsed from SQL database table.
+
+    :returns: AgGrid
     """
-    table = DataTable(
+    grid = AgGrid(
         id="database-table",
-        columns=[{"name": i, "id": i} for i in table_df.columns],
-        data=table_df.to_dict("records"),
-        sort_action="native",
-        sort_mode="native",
-        page_size=9000,
-        editable=False,
+        rowData=df.to_dict("records"),
+        columnDefs=[{"field": i} for i in df.columns],
+        dashGridOptions={"enableCellTextSelection": True, "ensureDomOrder": True},
+        defaultColDef={"resizeable": False},
+        columnSize="sizeToFit",
     )
-    return table
+    return grid
 
 
 def init_callbacks(dash_app: Dash, table_df: DataFrame):

@@ -18,6 +18,7 @@ flask-sqlalchemy = "*"
 pymysql = "*"
 flask-assets = "*"
 dash = "*"
+dash-ag-grid = "*"
 dash-core-components = "*"
 dash-html-components = "*"
 dash-renderer = "*"
@@ -42,10 +43,10 @@ run = "wsgi:app"
 issues = "https://github.com/toddbirchard/pythonmyadmin/issues"
 
 [tool.poetry.group.dev.dependencies]
-black = { version = "^23.7.0", allow-prereleases = true }
+black = { version = "^24.4.0", allow-prereleases = true }
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.5.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.isort]

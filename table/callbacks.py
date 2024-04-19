@@ -68,3 +68,17 @@ return html.Div(className='row', children=[
         html.Pre(json.dumps(rows, indent=2))
     ], className='six columns'),
 ])"""
+
+
+@callback(
+    Output("clipboard-state", "content"),
+    Input("clipboard-state", "n_clicks"),
+    Input("clipboard-state-grid", "columnState"),
+    State("clipboard-state-grid", "selectedRows"),
+    prevent_initial_call=True,
+)
+def selected(n, col_state, selected):
+    if selected is None:
+        return "No selections"
+    if col_state is None:
+        return no_update
