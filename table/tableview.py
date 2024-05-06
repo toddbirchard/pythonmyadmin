@@ -1,4 +1,5 @@
 """Dash app for database table view."""
+
 from typing import List, Optional
 
 from dash import Dash, dcc, html
@@ -21,7 +22,7 @@ def create_dash_view(server: Flask) -> Flask:
     """
     external_stylesheets = [
         "/static/dist/css/style.css",
-        "https://fonts.googleapis.com/css?family=Lato::300,700",
+        "https://fonts.googleapis.com/css?family=Lato::300,400,500,700",
         "https://use.fontawesome.com/releases/v5.8.1/css/all.css",
     ]
     dash_app = Dash(
@@ -116,10 +117,9 @@ def init_callbacks(dash_app: Dash, table_df: DataFrame):
         """
         Filter data via text search or dropdowns.
 
-        :param types: Category associated with each row in a SQL table.
-        :type types: Optional[List[str]]
-        :param search_query: Category associated with each row in a SQL table.
-        :type search_query: Optional[str]
+        :param Optional[List[str]] types: Category associated with each row in a SQL table.
+        :param Optional[str] search_query: Category associated with each row in a SQL table.
+
         :returns: dict
         """
         dff = table_df

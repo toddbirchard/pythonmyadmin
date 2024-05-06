@@ -27,13 +27,7 @@ Replace the values in **.env.example** with your values and rename this file to 
 Get up and running with `make deploy`:
 
 ```shell
-<<<<<<< HEAD
-git clone https://github.com/hackersandslackers/flask-blueprint-tutorial.git
-cd flask-blueprint-tutorial
-make deploy
-=======
 $ git clone https://github.com/toddbirchard/pythonmyadmin.git
 $ cd pythonmyadmin
 $ make deploy
->>>>>>> feature/update-dash-dependencies
 ```
