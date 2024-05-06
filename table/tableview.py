@@ -1,10 +1,10 @@
 """Dash app for database table view."""
 
 from typing import List, Optional
+import json
 
-from dash import Dash, dcc, html
+from dash import Dash, dcc, html, Input, Output, State, callback
 from dash_ag_grid import AgGrid
-from dash.dependencies import Input, Output
 from flask import Flask
 from pandas import DataFrame
 
@@ -22,7 +22,7 @@ def create_dash_view(server: Flask) -> Flask:
     """
     external_stylesheets = [
         "/static/dist/css/style.css",
-        "https://fonts.googleapis.com/css?family=Lato::300,700",
+        "https://fonts.googleapis.com/css?family=Lato::300,400,500,700",
         "https://use.fontawesome.com/releases/v5.8.1/css/all.css",
     ]
     dash_app = Dash(
@@ -43,7 +43,7 @@ def create_dash_view(server: Flask) -> Flask:
 
     # Create Dash Layout comprised of Data Tables
     dash_app.layout = create_layout(dash_grid, df)
-    init_callbacks(dash_app, df)
+    # init_callbacks(dash_app, df)
 
     return dash_app.server
 
@@ -60,6 +60,14 @@ def create_layout(dash_grid: AgGrid, df: DataFrame) -> html.Div:
     return html.Div(
         id="database-table-container",
         children=[
+            dcc.Clipboard(
+                target_id="copied-data",
+                title="copy",
+                style={
+                    "display": "block",
+                    "fontSize": 20,
+                },
+            ),
             html.Div(
                 id="controls",
                 children=[
@@ -91,14 +99,16 @@ def create_data_grid(df: DataFrame) -> AgGrid:
         id="database-table",
         rowData=df.to_dict("records"),
         columnDefs=[{"field": i} for i in df.columns],
-        dashGridOptions={"enableCellTextSelection": True, "ensureDomOrder": True},
-        defaultColDef={"resizeable": False},
+        dashGridOptions={
+            "enableCellTextSelection": True,
+            "ensureDomOrder": True,
+        },
         columnSize="sizeToFit",
     )
     return grid
 
 
-def init_callbacks(dash_app: Dash, table_df: DataFrame):
+'''def init_callbacks(dash_app: Dash, table_df: DataFrame):
     """
     Initialize callbacks for user interactions.
 
@@ -116,10 +126,9 @@ def init_callbacks(dash_app: Dash, table_df: DataFrame):
         """
         Filter data via text search or dropdowns.
 
-        :param types: Category associated with each row in a SQL table.
-        :type types: Optional[List[str]]
-        :param search_query: Category associated with each row in a SQL table.
-        :type search_query: Optional[str]
+        :param Optional[List[str]] types: Category associated with each row in a SQL table.
+        :param Optional[str] search_query: Category associated with each row in a SQL table.
+
         :returns: dict
         """
         dff = table_df
@@ -130,4 +139,16 @@ def init_callbacks(dash_app: Dash, table_df: DataFrame):
         if search_query:
             dff = dff.loc[dff["command"].str.contains(search_query.lower().strip())]
 
-        return dff.to_dict("records")
+        return dff.to_dict("records")'''
+
+
+@callback(
+    Output(" ", "content"),
+    Input("database-table", "cellClicked"),
+)
+def display_cell_clicked_on(cell):
+    # TODO: https://dash.plotly.com/dash-ag-grid/clipboard
+    print(cell)
+    cell = json.dumps(cell)
+    print(cell)
+    return cell
