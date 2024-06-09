@@ -4,9 +4,13 @@
 .table-template {
   margin: 0;
 
+  header {
+    margin-bottom: 25px !important;
+  }
+
   .dash-spreadsheet-container {
     max-width: 100%;
-    margin: 20px auto !important;
+    margin: 25px auto !important;
     overflow: hidden;
     border: 0;
     border-radius: 4px;
@@ -85,8 +89,6 @@
     }
 
     tr {
-      border: 0 !important;
-
       &:nth-child(even) {
         background: #e7eefa !important;
       }
@@ -95,14 +97,14 @@
     td {
       padding: 15px 10px !important;
       overflow: hidden !important;
-      border: 0 !important;
-      font-size: 0.6em !important;
       line-height: 1.25 !important;
       text-align: center !important;
+      transition: all 0.2s ease-out;
 
       &.focused {
-        background-color: rgba(154, 212, 255, 0.2) !important;
+        //background-color: rgba(154, 212, 255, 0.2) !important;
         box-shadow: 0 0 4px #cdd3e2;
+       //  border: 1px #317ed1;
       }
 
       &.unfocused {
@@ -117,9 +119,9 @@
         display: block !important;
         max-width: 500px;
         overflow: hidden !important;
-        font-size: 1.2em;
+        font-size: .9em;
         font-weight: 300;
-        text-align: left;
+        text-align: left !important;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
@@ -163,12 +165,6 @@
         color: grey;
       }
     }
-
-    .input-active {
-      overflow: visible !important;
-      color: @theme-color;
-      text-align: left !important;
-    }
   }
 
   #controls {
@@ -198,9 +194,15 @@
   #search,
   .Select {
     margin: 0;
-    padding: 8px;
+    padding: 0;
     border: 0;
+    height: 50px;
     box-shadow: 0 0 4px #cdd3e2;
+
+    .Select-control {
+      height: 45px;
+      padding: 7px;
+    }
 
     .Select-placeholder {
       height: fit-content;
@@ -218,17 +220,17 @@
       .Select-value-label {
         padding: 4px 9px;
         line-height: 1;
-        font-size: .7em;
+        font-size: .8em;
       }
     }
 
     .Select-menu-outer {
       border: 0;
       box-shadow: 0 0 6px #cdd3e2;
-      font-size: .7em;
-      height: 500px !important;
-      min-height: 500px !important;
-  
+      max-height: 400px !important;
+      height: 400px !important;
+      background-color: white;
+
       * {
         width: 100%;
         color: #404552;

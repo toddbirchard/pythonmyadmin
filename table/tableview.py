@@ -69,6 +69,9 @@ def create_layout(dash_table: DataTable, table_df: DataFrame) -> html.Div:
                         options=[{"label": i, "value": i} for i in table_df.type.unique() if i],
                         multi=True,
                         placeholder="Filter by type",
+                        maxHeight=400,
+                        optionHeight=40,
+                        style={"font-size": "1em"},
                     ),
                 ],
             ),
@@ -83,8 +86,8 @@ def create_data_table(table_df: DataFrame) -> DataTable:
     """
     Create Plotly DataTable component from Pandas DataFrame.
 
-    :param table_df: DataFrame created from SQL table.
-    :type table_df: DataFrame
+    :param DataFrame table_df: DataFrame created from SQL table.
+
     :returns: DataTable
     """
     table = DataTable(
@@ -94,7 +97,25 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         sort_action="native",
         sort_mode="native",
         page_size=9000,
-        editable=False,
+        editable=True,
+        style_cell={
+            "font-size": ".8em",
+            "background-color": "white",
+            "color": "#636a73",
+            "text-align": "left",
+            "border": "0",
+        },
+        style_header={"font-size": "1em"},
+        style_data_conditional=[
+            {
+                "if": {"state": "selected"},
+                "font-size": ".8em",
+                "background-color": "#ddf0fa",
+                "border": "1px solid #317ed1",
+                "color": "#318eaf",
+                "text-align": "left",
+            },
+        ],
     )
     return table
 
@@ -103,10 +124,8 @@ def init_callbacks(dash_app: Dash, table_df: DataFrame):
     """
     Initialize callbacks for user interactions.
 
-    :param dash_app: Plotly Dash application object.
-    :type dash_app: Dash
-    :param table_df: DataFrame created from SQL table.
-    :type table_df: DataFrame
+    :param Dash dash_app: Plotly Dash application object.
+    :param DataFrame table_df: DataFrame created from SQL table.
     """
 
     @dash_app.callback(

@@ -30,11 +30,9 @@ $(VIRTUAL_ENV):
 		python3 -m venv $(VIRTUAL_ENV); \
 	fi
 
-
 .PHONY: run
 run: env
-	$(LOCAL_PYTHON) -m gunicorn -w 4 wsgi:app
-
+	$(LOCAL_PYTHON) -m gunicorn --config=gunicorn.conf.py
 
 .PHONY: install
 install: env
@@ -48,7 +46,6 @@ deploy:
 	make install \
 	make run
 
-
 .PHONY: test
 test: env
 	$(LOCAL_PYTHON) -m \
@@ -57,20 +54,18 @@ test: env
 		coverage html --title='Coverage Report' -d .reports && \
 		open .reports/index.html
 
-
 .PHONY: update
 update: env
+	poetry self add poetry-plugin-export && \
 	$(LOCAL_PYTHON) -m pip install --upgrade pip setuptools wheel && \
 	poetry update && \
 	poetry export -f requirements.txt --output requirements.txt --without-hashes && \
 	echo "Updated dependencies in virtualenv \`${VIRTUAL_ENVIRONMENT}\`";
 
-
 .PHONY: format
 format: env
 	$(LOCAL_PYTHON) -m isort --multi-line=3 . && \
 	$(LOCAL_PYTHON) -m black .
-
 
 .PHONY: lint
 lint: env
@@ -82,17 +77,14 @@ lint: env
 			--statistics
 			
 
-
 .PHONY: clean
 clean:
 	find . -name 'poetry.lock' -delete && \
 	find . -name '.coverage' -delete && \
-	find . -wholename '**/*.pyc' -delete && \
-	find . -type d -wholename '__pycache__' -exec rm -rf {} + && \
-	find . -type d -wholename '.venv' -exec rm -rf {} + && \
-	find . -type d -wholename '.pytest_cache' -exec rm -rf {} + && \
-	find . -type d -wholename '**/.pytest_cache' -exec rm -rf {} + && \
-	find . -type d -wholename './logs/*' -exec rm -rf {} + && \
-	find . -type d -wholename './.reports/*' -exec rm -rf {} + \
-	find . -wholename '.webassets-cache/*' -exec rm -rf {} + \
-	find . -wholename 'pythonmyadmin/static/.webassets-cache/' -exec rm -rf {} + 
+	find . -wholename './**/*.pyc' -delete && \
+	find . -type d -wholename '__pycache__' -exec rm -rf {} +
+	find . -type d -wholename '.pytest_cache' -exec rm -rf {} +
+	find . -type d -wholename '**/.pytest_cache' -exec rm -rf {} +
+	find . -type d -wholename './logs/*' -exec rm -rf {} +
+	find . -type d -wholename './.reports/*' -exec rm -rf {} +
+	find . -type d -wholename '**/webassets-cache/' -exec rm -rf {} +
