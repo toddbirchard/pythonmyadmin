@@ -5,17 +5,25 @@
   margin: 0;
 
   header {
-    margin-bottom: 25px !important;
+    margin-bottom: 25px;
+
+    @media(max-width: @tablet-breakpoint) {
+      margin: 0 auto 2vw;
+    }
   }
 
   .dash-spreadsheet-container {
     max-width: 100%;
-    margin: 25px auto !important;
+    margin: 25px auto;
     overflow: hidden;
     border: 0;
     border-radius: 4px;
     box-shadow: 0 0 4px #cdd3e2;
     font-family: @body-font;
+
+    @media(max-width: @tablet-breakpoint) {
+      margin: 2vw auto;
+    }
 
     * {
       box-shadow: none !important;
