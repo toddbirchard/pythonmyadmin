@@ -76,7 +76,6 @@ lint: env
 			--show-source \
 			--statistics
 			
-
 .PHONY: clean
 clean:
 	find . -name 'poetry.lock' -delete && \

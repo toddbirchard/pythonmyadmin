@@ -12,8 +12,8 @@ load_dotenv(path.join(basedir, ".env"))
 ENVIRONMENT = environ.get("ENVIRONMENT")
 
 proc_name = "pythonmyadmin"
-wsgi_app = "wsgi:app"
-bind = "unix:flask.sock"
+wsgi_app = "main:app"
+bind = "unix:pythonmyadmin.sock"
 threads = 4
 workers = 2
 

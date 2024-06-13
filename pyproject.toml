@@ -37,7 +37,7 @@ gunicorn = "*"
 poetry-plugin-export = "*"
 
 [tool.poetry.scripts]
-run = "wsgi:app"
+run = "main:app"
 
 [tool.poetry.urls]
 issues = "https://github.com/toddbirchard/pythonmyadmin/issues"

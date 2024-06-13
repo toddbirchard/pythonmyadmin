@@ -104,6 +104,7 @@ def create_data_table(table_df: DataFrame) -> DataTable:
             "color": "#636a73",
             "text-align": "left",
             "border": "0",
+            "transition": "all 2s ease-out",
         },
         style_header={"font-size": "1em"},
         style_data_conditional=[

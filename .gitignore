@@ -116,5 +116,5 @@ gcloud.json
 .webassets-cache
 
 # IDES
-.idea
-.vscode
+.idea/
+.vscode/

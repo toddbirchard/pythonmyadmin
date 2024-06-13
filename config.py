@@ -12,9 +12,9 @@ class Config:
     """Global configuration variables."""
 
     # General Config
+    FLASK_APP = environ.get("FLASK_APP")
     ENVIRONMENT = environ.get("ENVIRONMENT")
     SECRET_KEY = environ.get("SECRET_KEY")
-    FLASK_APP = environ.get("FLASK_APP")
     FLASK_DEBUG = environ.get("FLASK_DEBUG")
 
     # Database
