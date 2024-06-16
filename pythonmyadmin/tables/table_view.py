@@ -101,13 +101,13 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         # editable=True,
         cell_selectable=True,
         style_cell={
-            "font-size": ".9em",
             "font-family": "Lato,sans-serif",
+            "font-size": ".9em",
             "background-color": "white",
             "color": "#636a73",
             "text-align": "left",
             "border": "0px solid #ffffff",
-            "transition": "all 2s ease-out",
+            "transition": "all 1s ease-out",
         },
         style_header={"font-size": "1em"},
         style_data_conditional=[

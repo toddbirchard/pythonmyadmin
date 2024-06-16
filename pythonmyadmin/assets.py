@@ -1,11 +1,6 @@
 """Build static assets."""
-
-import shutil
-
 from flask import Flask
 from flask_assets import Bundle, Environment
-
-from config import BASE_DIR
 
 
 def compile_js_assets(app: Flask):
