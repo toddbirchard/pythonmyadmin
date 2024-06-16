@@ -65,6 +65,7 @@
 
         svg {
           width: 0.5em;
+          font-size: 1.6em;
         }
       }
 
@@ -86,7 +87,7 @@
         width: fit-content;
 
         span:last-of-type {
-          font-size: 0.85em;
+          font-size: 0.95em;
           text-transform: uppercase;
         }
       }
@@ -102,19 +103,27 @@
       }
     }
 
-    td {
+    .dash-cell {
       padding: 15px 10px !important;
       overflow: hidden !important;
       line-height: 1.25 !important;
       text-align: center !important;
-      transition: all 0.2s ease-out;
+      transition: all 0.1s ease-out;
 
       &.focused {
-        //background-color: rgba(154, 212, 255, 0.2) !important;
-        box-shadow: 0 0 4px #cdd3e2;
-       //  border: 1px #317ed1;
-      }
+        * {
+          background: rgb(49 126 209 / 15%);
+          color: #205681;
+        }
+       }
 
+       &::selection {
+        * {
+          background: rgb(49 126 209 / 15%);
+          color: #205681;
+        }
+      }
+      
       &.unfocused {
         caret-color: #317ed1 !important
       }
@@ -127,7 +136,6 @@
         display: block !important;
         max-width: 500px;
         overflow: hidden !important;
-        font-size: .9em;
         font-weight: 300;
         text-align: left !important;
         text-overflow: ellipsis;
@@ -228,7 +236,6 @@
       .Select-value-label {
         padding: 4px 9px;
         line-height: 1;
-        font-size: .8em;
       }
     }
 

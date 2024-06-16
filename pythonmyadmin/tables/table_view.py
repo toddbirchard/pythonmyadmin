@@ -9,7 +9,8 @@ from flask import Flask
 from pandas import DataFrame
 
 from clients import db
-from table.layout import app_layout
+
+from .layout import app_layout
 
 
 def create_dash_view(server: Flask) -> Flask:
@@ -97,7 +98,8 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         sort_action="native",
         sort_mode="native",
         page_size=9000,
-        editable=True,
+        # editable=True,
+        cell_selectable=True,
         style_cell={
             "font-size": ".9em",
             "font-family": "Lato,sans-serif",
@@ -111,7 +113,6 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         style_data_conditional=[
             {
                 "if": {"state": "selected"},
-                "font-size": ".7em",
                 "font-family": "Lato,sans-serif",
                 "background-color": "#ddf0fa",
                 "border": "1px solid #317ed1",
