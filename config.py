@@ -12,8 +12,11 @@ class Config:
     """Global configuration variables."""
 
     # General Config
-    FLASK_APP = environ.get("FLASK_APP")
+    APP_NAME = "pythonmyadmin"
     ENVIRONMENT = environ.get("ENVIRONMENT")
+
+    # Flask Config
+    FLASK_APP = environ.get("FLASK_APP")
     SECRET_KEY = environ.get("SECRET_KEY")
     FLASK_DEBUG = environ.get("FLASK_DEBUG")
 

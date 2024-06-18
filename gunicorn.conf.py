@@ -21,12 +21,13 @@ if ENVIRONMENT == "development" or ENVIRONMENT is None:
     reload = True
     workers = 1
     threads = 1
-    bind = ["127.0.0.1:3307"]
+    bind = ["127.0.0.1:8000"]
 elif ENVIRONMENT == "production":
+    access_log_format = "%(h)s %(l)s %(u)s %(t)s %(r)s %(s)s %(b)s %(f)s %(a)s"
     daemon = True
-    accesslog = "/var/log/pythonmyadmin/access.log"
-    errorlog = "/var/log/pythonmyadmin/error.log"
+    accesslog = "/var/log/pythonmyadmin/access.json"
+    errorlog = "/var/log/pythonmyadmin/error.json"
     loglevel = "trace"
-    dogstatsd_tags = "env:prod,service:pythonmyadmin,language:python"
+    dogstatsd_tags = "env:production,service:pythonmyadmin,language:python"
 else:
     raise ValueError(f"Unknown environment provided: `{ENVIRONMENT}`. Must be `development` or `production`.")
