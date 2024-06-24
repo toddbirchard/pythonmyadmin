@@ -41,9 +41,11 @@ flake8 = "*"
 cryptography = "*"
 gunicorn = "*"
 poetry-plugin-export = "*"
+ddtrace = "^2.9.1"
+loguru = "^0.7.2"
 
 [tool.poetry.scripts]
-run = "wsgi:app"
+run = "main:app"
 
 [tool.poetry.urls]
 issues = "https://github.com/toddbirchard/pythonmyadmin/issues"

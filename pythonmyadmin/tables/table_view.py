@@ -2,14 +2,15 @@
 
 from typing import List, Optional
 
-from dash import Dash, dcc, html
+from dash import Dash, dcc, get_asset_url, html
 from dash.dash_table import DataTable
 from dash.dependencies import Input, Output
 from flask import Flask
 from pandas import DataFrame
 
 from clients import db
-from table.layout import app_layout
+
+from .layout import app_layout
 
 
 def create_dash_view(server: Flask) -> Flask:
@@ -97,22 +98,25 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         sort_action="native",
         sort_mode="native",
         page_size=9000,
-        editable=True,
+        # editable=True,
+        cell_selectable=True,
         style_cell={
-            "font-size": ".8em",
+            "font-family": "Lato,sans-serif",
+            "font-size": ".9em",
             "background-color": "white",
             "color": "#636a73",
             "text-align": "left",
-            "border": "0",
+            "border": "0px solid #ffffff",
+            "transition": "all 1s ease-out",
         },
         style_header={"font-size": "1em"},
         style_data_conditional=[
             {
                 "if": {"state": "selected"},
-                "font-size": ".8em",
+                "font-family": "Lato,sans-serif",
                 "background-color": "#ddf0fa",
                 "border": "1px solid #317ed1",
-                "color": "#318eaf",
+                "color": "#6a94bc !important",
                 "text-align": "left",
             },
         ],

@@ -76,15 +76,15 @@ lint: env
 			--show-source \
 			--statistics
 			
-
 .PHONY: clean
 clean:
 	find . -name 'poetry.lock' -delete && \
 	find . -name '.coverage' -delete && \
 	find . -wholename './**/*.pyc' -delete && \
-	find . -type d -wholename '__pycache__' -exec rm -rf {} +
+	find . -type d -wholename '**/__pycache__' -exec rm -rf {} +
 	find . -type d -wholename '.pytest_cache' -exec rm -rf {} +
 	find . -type d -wholename '**/.pytest_cache' -exec rm -rf {} +
 	find . -type d -wholename './logs/*' -exec rm -rf {} +
 	find . -type d -wholename './.reports/*' -exec rm -rf {} +
-	find . -type d -wholename '**/webassets-cache/' -exec rm -rf {} +
+	find . -type d -wholename '**/.webassets-cache/' -exec rm -rf {} +
+	rm -rf './pythonmyadmin/static/.webassets-cache/'

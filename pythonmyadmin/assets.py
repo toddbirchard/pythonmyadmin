@@ -10,12 +10,12 @@ def compile_js_assets(app: Flask):
     Environment.debug = False
     js_bundle = Bundle("js/*.js", filters="jsmin", output="dist/js/main.js")
     assets.register("js_all", js_bundle)
-    if app.config["ENVIRONMENT"] != "production":
-        js_bundle.build()
+    js_bundle.build()
 
 
 def compile_style_assets(app: Flask):
     """Build CSS style bundle."""
+    # shutil.rmtree(f"{BASE_DIR}/pythonmyadmin/static/.webassets-cache", ignore_errors=False)
     assets = Environment(app)
     Environment.auto_build = True
     Environment.debug = False
@@ -26,5 +26,4 @@ def compile_style_assets(app: Flask):
         extra={"rel": "stylesheet/less"},
     )
     assets.register("less_all", less_bundle)
-    if app.config["ENVIRONMENT"] != "production":
-        less_bundle.build(force=True)
+    less_bundle.build(force=True)

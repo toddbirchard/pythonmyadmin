@@ -17,23 +17,21 @@ def create_app() -> Flask:
     db.init_app(app)
 
     with app.app_context():
-        # Create tables for our models
-        db.create_all()
-
         # Import parts of our application
-        from table import tableview
-
         from . import routes
         from .assets import compile_js_assets, compile_style_assets
+        from .tables import table_view
 
-        # Register App Blueprint
-        app.register_blueprint(routes.main_bp)
+        # Create tables for our models
+        db.create_all()
 
         # Compile static assets
         if app.config["ENVIRONMENT"] == "development":
             compile_js_assets(app)
             compile_style_assets(app)
 
-        app = tableview.create_dash_view(app)
+        # Register App Blueprint
+        app.register_blueprint(routes.main_bp)
+        app = table_view.create_dash_view(app)
 
         return app
