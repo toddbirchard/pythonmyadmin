@@ -102,14 +102,14 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         cell_selectable=True,
         style_cell={
             "font-family": "Lato,sans-serif",
-            "font-size": ".9em",
+            "font-size": ".85em",
             "background-color": "white",
             "color": "#636a73",
             "text-align": "left",
             "border": "0px solid #ffffff",
             "transition": "all 1s ease-out",
         },
-        style_header={"font-size": "1em"},
+        style_header={"font-size": "1em", "padding": "20px 10px"},
         style_data_conditional=[
             {
                 "if": {"state": "selected"},

@@ -1,8 +1,10 @@
+@import './variables.less';
+
 header {
   position: relative;
   width: 100%;
   margin-bottom: 2vw;
-  padding: 40px 0 !important;
+  padding: 30px 0;
   background: white !important;
   box-shadow: 0 0 5px #bec6cf;
   font-family: 'Lato', sans-serif;
@@ -13,16 +15,23 @@ header {
     box-shadow: 0 0 2px #707985;
   }
   @media(max-width: 600px) {
-    padding: 30px 0 !important;
+    padding: 25px 0 !important;
   }
 
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 975px;
-    max-width: 90%;
+    width: 1000px;
     margin: auto;
+
+    @media(max-width: 800px) {
+      width: 93vw;
+      max-width: 93vw;
+    }
+    @media(max-width: 600px) {
+      width: 90vw;
+    }
 
     .nav-link {
       color: #59657b;
@@ -44,14 +53,25 @@ header {
         justify-content: space-between;
       }
 
+      .site-name,
       h1 {
         margin: 0;
-        font-size: 1.4em;
+        font-size: 1.2em;
+
+        @media(max-width: 600px) {
+          font-size: 1.1em;
+        }
       }
 
+      .logo,
       i {
         margin-right: 8px;
         font-size: 1.5em;
+
+        @media(max-width: 600px) {
+          margin-right: 6px;
+          font-size: 1.3em;
+        }
       }
     }
   }
