@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pythonmyadmin"
 version = "0.1.1"
-description = "Lightweight GUI for modifying database tables."
+description = "Web GUI for connecting to and managing databases."
 authors = ["Todd Birchard <toddbirchard@gmail.com>"]
 maintainers = ["Todd Birchard <toddbirchard@gmail.com>"]
 license = "MIT"
@@ -9,7 +9,13 @@ readme = "README.md"
 homepage = "https://github.com/toddbirchard/pythonmyadmin/"
 repository = "https://github.com/toddbirchard/pythonmyadmin/"
 documentation = "https://github.com/toddbirchard/pythonmyadmin/"
-keywords = ["Python", "SQL", "MySQL", "Postgres", "Tooling"]
+keywords = [
+    "Python",
+    "SQL", 
+    "GUI",
+    "Admin", 
+    "Databases"
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
@@ -44,16 +50,18 @@ run = "main:app"
 [tool.poetry.urls]
 issues = "https://github.com/toddbirchard/pythonmyadmin/issues"
 
-[tool.poetry.group.dev.dependencies]
-black = { version = "^23.7.0", allow-prereleases = true }
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.isort]
 profile = "black"
-src_paths = ["pythonmyadmin", "table", "clients", "config"]
+src_paths = [
+    "pythonmyadmin",
+    "table", 
+    "clients", 
+    "config"
+]
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = "C0103,C0301,W0703,W0621"
