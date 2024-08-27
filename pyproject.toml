@@ -40,9 +40,9 @@ lesscpy = "*"
 flake8 = "*"
 cryptography = "*"
 gunicorn = "*"
-poetry-plugin-export = "*"
-ddtrace = "^2.9.1"
-loguru = "^0.7.2"
+poetry-plugin-export = "^1.8.0"
+ddtrace = "*"
+loguru = "*"
 
 [tool.poetry.scripts]
 run = "main:app"

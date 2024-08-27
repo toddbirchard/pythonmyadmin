@@ -100,6 +100,7 @@ def create_data_table(table_df: DataFrame) -> DataTable:
         page_size=9000,
         # editable=True,
         cell_selectable=True,
+        markdown_options={"link_target": "_blank", "html": True},
         style_cell={
             "font-family": "Lato,sans-serif",
             "font-size": ".85em",

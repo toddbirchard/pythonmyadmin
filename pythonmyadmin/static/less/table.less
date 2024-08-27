@@ -46,7 +46,7 @@
     }
 
     th {
-      padding: 25px 15px !important;
+      padding: 20px 15px !important;
       border-top: 0 !important;
       border-right: 0 !important;
       border-bottom: 1px solid #e5e7eb !important;
@@ -56,11 +56,11 @@
       font-weight: 600 !important;
 
       @media(max-width: 600px) {
-        padding: 15px !important;
+        padding: 15px 8px !important
       }
 
       .column-header--sort {
-        margin-right: 7px;
+        margin-right: 5px;
         transition: all 0.2s ease-out;
 
         &:hover {
@@ -69,7 +69,11 @@
 
         svg {
           width: 0.5em;
-          font-size: 1.6em;
+          font-size: 1.2em;
+
+          @media(max-width: 600px) {
+            font-size: 1.2em;
+          }
         }
       }
 
@@ -161,6 +165,10 @@
     td[data-dash-column="type"],
     th[data-dash-column="type"]{
       max-width: 70px !important;
+
+      @media(max-width: 600px) {
+        max-width: 60px !important;
+      }
     }
 
     td[data-dash-column="response"],
@@ -206,11 +214,12 @@
     padding: 0 15px !important;
     height: 50px;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 1.1em;
 
     @media(max-width: 600px) {
       margin-right: 8px !important;
       min-width: 45vw;
+      font-size: .95em;
     }
 
     &::placeholder {
@@ -240,6 +249,10 @@
       height: fit-content;
       margin: auto;
       padding: 10px;
+      @media(max-width: 600px) {
+        font-size: .9em;
+        padding: 8px;
+      }
     }
 
     .Select-value {

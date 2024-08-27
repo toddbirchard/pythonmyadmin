@@ -1,4 +1,5 @@
 """Core route declaration."""
+
 from typing import List
 
 from flask import Blueprint

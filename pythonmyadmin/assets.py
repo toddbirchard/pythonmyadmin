@@ -1,4 +1,5 @@
 """Build static assets."""
+
 from flask import Flask
 from flask_assets import Bundle, Environment
 
