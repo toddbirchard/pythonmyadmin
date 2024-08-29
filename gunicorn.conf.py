@@ -25,7 +25,7 @@ if ENVIRONMENT == "development" or ENVIRONMENT is None:
 elif ENVIRONMENT == "production":
     access_log_format = "%(h)s %(l)s %(u)s %(t)s %(r)s %(s)s %(b)s %(f)s %(a)s"
     daemon = True
-    accesslog = "/var/log/pythonmyadmin/access.json"
+    accesslog = "/var/log/pythonmyadmin/info.json"
     errorlog = "/var/log/pythonmyadmin/error.json"
     loglevel = "trace"
     dogstatsd_tags = "env:production,service:pythonmyadmin,language:python"
