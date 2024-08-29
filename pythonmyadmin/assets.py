@@ -16,7 +16,6 @@ def compile_js_assets(app: Flask):
 
 def compile_style_assets(app: Flask):
     """Build CSS style bundle."""
-    # shutil.rmtree(f"{BASE_DIR}/pythonmyadmin/static/.webassets-cache", ignore_errors=False)
     assets = Environment(app)
     Environment.auto_build = True
     Environment.debug = False

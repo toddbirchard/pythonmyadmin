@@ -12,7 +12,7 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 ENVIRONMENT = environ.get("ENVIRONMENT")
 
 proc_name = "pythonmyadmin"
-wsgi_app = "main:app"
+wsgi_app = "wsgi:app"
 bind = "unix:pythonmyadmin.sock"
 threads = 4
 workers = 2

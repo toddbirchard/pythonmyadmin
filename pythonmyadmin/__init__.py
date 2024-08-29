@@ -2,6 +2,7 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from log import LOGGER
 
 db = SQLAlchemy()
 
@@ -26,12 +27,12 @@ def create_app() -> Flask:
         db.create_all()
 
         # Compile static assets
-        if app.config["ENVIRONMENT"] == "development":
-            compile_js_assets(app)
-            compile_style_assets(app)
+        compile_js_assets(app)
+        compile_style_assets(app)
 
         # Register App Blueprint
         app.register_blueprint(routes.main_bp)
         app = table_view.create_dash_view(app)
 
+        LOGGER.info("Flask app initialized.")
         return app

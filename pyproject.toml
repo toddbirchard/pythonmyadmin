@@ -40,11 +40,11 @@ lesscpy = "*"
 flake8 = "*"
 cryptography = "*"
 gunicorn = "*"
-poetry-plugin-export = "^1.8.0"
+poetry-plugin-export = "*"
 loguru = "*"
 
 [tool.poetry.scripts]
-run = "main:app"
+run = "wsgi:app"
 
 [tool.poetry.urls]
 issues = "https://github.com/toddbirchard/pythonmyadmin/issues"

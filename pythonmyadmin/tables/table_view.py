@@ -2,7 +2,7 @@
 
 from typing import List, Optional
 
-from dash import Dash, dcc, get_asset_url, html
+from dash import Dash, dcc, html
 from dash.dash_table import DataTable
 from dash.dependencies import Input, Output
 from flask import Flask
