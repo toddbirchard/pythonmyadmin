@@ -50,8 +50,8 @@ run = "wsgi:app"
 issues = "https://github.com/toddbirchard/pythonmyadmin/issues"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.isort]
 profile = "black"

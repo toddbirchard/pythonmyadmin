@@ -25,10 +25,12 @@ all help:
 env: $(VIRTUAL_ENV)
 
 $(VIRTUAL_ENV):
+	pip install --upgrade pip && pip install --user poetry-plugin-export;
 	if [ ! -d $(VIRTUAL_ENV) ]; then \
 		echo "Creating Python virtual env in \`${VIRTUAL_ENV}\`"; \
 		python3 -m venv $(VIRTUAL_ENV); \
 	fi
+	
 
 .PHONY: run
 run: env
