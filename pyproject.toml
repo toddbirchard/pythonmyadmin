@@ -18,7 +18,7 @@ keywords = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4.0"
+python = ">=3.12,<4.0"
 flask = "*"
 flask-sqlalchemy = "*"
 pymysql = "*"
@@ -40,7 +40,6 @@ lesscpy = "*"
 flake8 = "*"
 cryptography = "*"
 gunicorn = "*"
-poetry-plugin-export = "*"
 loguru = "*"
 
 [tool.poetry.scripts]
@@ -67,4 +66,4 @@ disable = "C0103,C0301,W0703,W0621"
 
 [tool.black]
 line-length = 120
-target-version = ['py310']
+target-version = ['py312']

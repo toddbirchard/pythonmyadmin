@@ -34,7 +34,7 @@ $(VIRTUAL_ENV):
 
 .PHONY: run
 run: env
-	$(LOCAL_PYTHON) -m gunicorn --config=gunicorn.conf.py
+	$(LOCAL_PYTHON) -m gunicorn --config=gunicorn.conf.py wsgi:app
 
 .PHONY: install
 install: env
@@ -89,4 +89,5 @@ clean:
 	find . -type d -wholename './logs/*' -exec rm -rf {} +
 	find . -type d -wholename './.reports/*' -exec rm -rf {} +
 	find . -type d -wholename '**/.webassets-cache/' -exec rm -rf {} +
-	rm -rf './pythonmyadmin/static/.webassets-cache/'
+	find . -type d -wholename 'dist' -exec rm -rf {} +
+	rm -rf './broiestbot_db/static/.webassets-cache/'

@@ -50,10 +50,8 @@ class Database:
 
         :returns: DataFrame
         """
-        table_df = pd.read_sql_table(
-            self.table, con=self.engine, index_col="id", parse_dates="created_at", chunksize=None
-        )
-        table_df.sort_values("created_at", ascending=False, inplace=True)
+        table_df = pd.read_sql_table(self.table, con=self.engine, index_col="id", parse_dates="created_at")
+        table_df.sort_index(inplace=True, ascending=False)
         table_df["created_at"] = table_df["created_at"].dt.strftime("%m/%d/%Y")
         return table_df
 
