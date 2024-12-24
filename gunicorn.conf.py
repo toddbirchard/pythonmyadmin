@@ -21,7 +21,7 @@ if ENVIRONMENT == "development" or ENVIRONMENT is None:
     reload = True
     workers = 1
     threads = 1
-    bind = ["127.0.0.1:8000"]
+    bind = ["127.0.0.1:8007"]
 elif ENVIRONMENT == "production":
     access_log_format = "%(h)s %(l)s %(u)s %(t)s %(r)s %(s)s %(b)s %(f)s %(a)s"
     daemon = True
