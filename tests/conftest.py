@@ -1,7 +1,5 @@
 """PyTest mocked fixtures."""
-
 import pytest
-
 from clients import Database
 from config import settings
 
@@ -10,7 +8,7 @@ from config import settings
 def db() -> Database:
     """Return a valid database object."""
     return Database(
-        uri=settings.SQLALCHEMY_DATABASE_URI,
-        table=settings.SQLALCHEMY_DATABASE_TABLE,
-        args=settings.SQLALCHEMY_CONNECT_ARGS,
+        uri = settings.SQLALCHEMY_DATABASE_URI,
+        table = settings.SQLALCHEMY_DATABASE_TABLE,
+        args = settings.SQLALCHEMY_CONNECT_ARGS,
     )
