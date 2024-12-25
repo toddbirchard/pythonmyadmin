@@ -1,3 +1,5 @@
+"""External client cionfiguration."""
+
 from clients.database import Database
 from config import Config
 

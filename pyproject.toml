@@ -41,6 +41,7 @@ flake8 = "*"
 cryptography = "*"
 gunicorn = "*"
 loguru = "*"
+coverage = "^7.6.9"
 
 [tool.poetry.scripts]
 run = "wsgi:app"
