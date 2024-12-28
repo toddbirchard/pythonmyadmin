@@ -5,6 +5,7 @@ cffi==1.17.1 ; python_version >= "3.12" and python_version < "4.0" and platform_
 charset-normalizer==3.4.1 ; python_version >= "3.12" and python_version < "4.0"
 click==8.1.8 ; python_version >= "3.12" and python_version < "4.0"
 colorama==0.4.6 ; python_version >= "3.12" and python_version < "4.0" and (sys_platform == "win32" or platform_system == "Windows")
+coverage==7.6.10 ; python_version >= "3.12" and python_version < "4.0"
 cryptography==44.0.0 ; python_version >= "3.12" and python_version < "4.0"
 cssmin==0.2.0 ; python_version >= "3.12" and python_version < "4.0"
 dash-core-components==2.0.0 ; python_version >= "3.12" and python_version < "4.0"
