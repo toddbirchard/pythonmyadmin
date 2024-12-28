@@ -5,6 +5,7 @@ from pandas import DataFrame
 from pandas.core.groupby.generic import DataFrameGroupBy
 from sqlalchemy import create_engine
 from sqlalchemy.types import DateTime, Integer, String, Text
+from sqlalchemy.engine import Engine
 
 
 class Database:
@@ -16,8 +17,12 @@ class Database:
         self.args = args
 
     @property
-    def engine(self):
-        """Database connection engine"""
+    def engine(self) -> Engine:
+        """
+        Database connection engine
+        
+        :returns: Engine
+        """
         return create_engine(self.uri, connect_args=self.args)
 
     def upload_dataframe(self, df: DataFrame) -> str:
