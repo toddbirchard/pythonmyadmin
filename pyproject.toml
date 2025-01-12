@@ -1,20 +1,33 @@
 [tool.poetry]
 name = "pythonmyadmin"
 version = "0.1.1"
+requires-poetry = ">=2.0"
 description = "Web GUI for connecting to and managing databases."
 authors = ["Todd Birchard <toddbirchard@gmail.com>"]
 maintainers = ["Todd Birchard <toddbirchard@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/toddbirchard/pythonmyadmin/"
+homepage = "https://pythonmyadmin.com"
 repository = "https://github.com/toddbirchard/pythonmyadmin/"
 documentation = "https://github.com/toddbirchard/pythonmyadmin/"
+package-mode = false
 keywords = [
     "Python",
     "SQL", 
     "GUI",
-    "Admin", 
-    "Databases"
+    "Admin",
+    "Admin Panel", 
+    "Database",
+    "RDBMS",
+]
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Database",
+    "Topic :: Database :: Front-Ends",
+    "Framework :: Dash",
+    "Framework :: Flask",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
 ]
 
 [tool.poetry.dependencies]
@@ -50,8 +63,13 @@ run = "wsgi:app"
 issues = "https://github.com/toddbirchard/pythonmyadmin/issues"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins]
+
+[tool.poetry.plugins."poetry.application.plugin"]
+export = "poetry_plugin_export.plugins:ExportApplicationPlugin"
 
 [tool.isort]
 profile = "black"
