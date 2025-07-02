@@ -14,8 +14,8 @@ ENVIRONMENT = environ.get("ENVIRONMENT")
 proc_name = "pythonmyadmin"
 wsgi_app = "wsgi:app"
 bind = "unix:pythonmyadmin.sock"
-threads = 8
-workers = 4
+threads = 2
+workers = 2
 
 if ENVIRONMENT == "development" or ENVIRONMENT is None:
     reload = True
